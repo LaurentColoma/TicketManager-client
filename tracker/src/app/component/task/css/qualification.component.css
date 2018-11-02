@@ -1,0 +1,34 @@
+li {
+  cursor: pointer;
+}
+
+span {
+  cursor: pointer;
+}
+
+.container-fluid .firstj {
+  background-color:  #0097a7;
+}
+
+.container {
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+.jumbotron {
+  background-color: #ffffff;
+}
+
+.jumbotron .ticket-title {
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+
+.jumbotron .details {
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}

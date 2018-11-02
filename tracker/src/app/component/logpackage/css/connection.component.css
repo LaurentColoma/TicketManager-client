@@ -1,0 +1,13 @@
+.container-fluid .firstj {
+  background-color:  #0097a7;
+}
+
+.container {
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+.login {
+  background-color: #ffffff;
+}

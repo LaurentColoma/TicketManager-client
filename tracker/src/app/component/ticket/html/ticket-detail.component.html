@@ -1,0 +1,154 @@
+<!--First Cartouche -->
+<div class="ticket-summary-details container-fluid">
+    <div class="firstj jumbotron">
+        <h1>{{ name }}: {{ ticket.label }}</h1>
+        <home></home>
+    </div>
+    <div class="jumbotron">
+        <div class="row">
+            <div class="roadmapSprint col-sm-8">
+                <table class="table table-bordered table-condensed">
+                    <thead style="background-color: #0097a7">
+                        <td>Roadmap</td>
+                        <td>Sprint</td>
+                    </thead>
+                    <tbody>
+                        <td>{{ ticket.roadmap }}</td>
+                        <td>{{ ticket.sprint }}</td>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-sm-4">
+                <table class="table table-bordered table-condensed">
+                    <thead style="background-color: #0097a7">
+                        <td>Impact</td>
+                        <td>Priority</td>
+                        <td>Time Sensitiveness</td>
+                        <td>Application</td>
+                        <td>Module</td>
+                    </thead>
+                    <tbody>
+                        <td>{{ ticket.impact }}</td>
+                        <td>{{ ticket.priority }}</td>
+                        <td>{{ ticket.time_sensitiveness }}</td>
+                        <td>{{ ticket.application }} {{ ticket.version_affected_set }}</td>
+                        <td>{{ ticket.module_set }}</td>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="secondRow row">
+            <div class="repport col-sm-6">
+                <table class="table table-bordered table-condensed">
+                    <thead style="background-color: #0097a7">
+                        <td>Rapporteur</td>
+                        <td>Responsible</td>
+                    </thead>
+                    <tbody>
+                        <td>lorem ipsum</td>
+                        <td>{{ ticket.accountable }}</td>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row">
+            <div class="addPrimaryData col-sm-8">
+                <table class="table table-bordered table-condensed">
+                    <thead style="background-color: #0097a7">
+                        <tr>
+                            <td>Assigned to</td>
+                            <td>Open</td>
+                            <td>Status</td>
+                            <td>Informed</td>
+                            <td>Consultors</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td *ngIf="ticket">{{ ticket.responsible }}</td>
+                            <td *ngIf="ticket.status !== 'validated'; else elseBlock">Yes</td>
+                            <ng-template #elseBlock>
+                                <td>No</td>
+                            </ng-template>
+                            <td>{{ ticket.status }}</td>
+                            <td>{{ ticket.informed_set }}</td>
+                            <td>{{ ticket.consulted_set }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<hr />
+<!-- Second Cartouche -->
+<div class="ticket-supp-details container-fluid">
+    <div class="jumbotron">
+        <div class="description row">
+            <div class="col-sm-12">
+                <h3>Description:</h3>
+                <br />
+                <p>{{ ticket.description }}</p>
+            </div>
+        </div>
+        <hr />
+        <div class="phases row">
+            <div class="col-sm-12">
+                <h3>Phases</h3>
+                <br />
+                <p>Phases here...</p>
+            </div>
+        </div>
+        <hr />
+        <div class="information row">
+            <div class="col-sm-12">
+                <h3>Additionnal Information</h3>
+                <br />
+                <p>add informations here...</p>
+            </div>
+        </div>
+        <hr />
+        <div class="link row">
+            <div class="col-sm-12">
+                <h3>Bind to (past ticket/origin ticket)</h3>
+                <br />
+                <p>{{ ticket.original }}</p>
+            </div>
+        </div>
+        <hr />
+        <div class="pieces row">
+            <div class="col-sm-12">
+                <h3>Attached Documents</h3>
+                <br />
+                <p>attached docs here...</p>
+            </div>
+        </div>
+    </div>
+</div>
+<hr />
+<!-- Third Cartouche -->
+<div class="commentary-section container-fluid">
+    <div class="chatj jumbotron">
+    <i class="glyphicon glyphicon-comment"></i><br />
+    <form name="form" (ngSubmit)="f.form.valid && createComment()" #f="ngForm" novalidate>
+        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !content.valid }">
+            <input class="form-control form-control-lg"  type="text" name="content"
+                   [(ngModel)]="model.content" #content="ngModel" required />
+            <div *ngIf="f.submitted && !content.valid" class="help-block">You must write something</div>
+        </div>
+        <div class="form-group">
+            <button (click)="refresh()" [disabled]="loading" class="btn btn-lg">Create</button>
+        </div>
+    </form>
+        <h3>Answer</h3>
+        <div *ngFor="let comment of comments">
+            <p *ngIf="comment.ticket === ticket.url">
+                {{ comment.content }}
+            </p>
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <footer >
+    </footer>
+</div>

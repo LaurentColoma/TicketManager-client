@@ -1,0 +1,99 @@
+<div class="container-fluid">
+    <div class="firstj jumbotron">
+        <h1>{{ name }}</h1>
+        <home></home>
+    </div>
+</div>
+<alert></alert>
+<!--
+<div class="row">
+    <div class="col-sm-3">
+    <div class="panel panel-warning">
+        <div class="panel-heading">
+        Available tickets
+        </div>
+        <div class="panel-body" dnd-sortable-container [dropZones]="['tickets-zone']"
+             [sortableData]="ticketCollection">
+            <ng-container *ngFor="let ticket of ticketCollection ; let i = index">
+                <ul class="list-group"
+                    *ngIf="ticket.status === 'tested'"
+                    dnd-sortable [sortableIndex]="i"
+                    (drag)="onDrag(ticket)"
+                    (drop)="updateStatus(this.draggedTicket, 'tested')">
+                    <li class="list-group-item">
+                        {{ticket.label}} ({{ ticket.status }})
+                    </li>
+                </ul>
+            </ng-container>
+        </div>
+    </div>
+    </div>
+    <div class="col-sm-3">
+    <div class="panel panel-success">
+        <div class="panel-heading">
+        Open
+        </div>
+        <div class="panel-body" dnd-sortable-container [dropZones]="['tickets-zone']"
+             [sortableData]="ticketCollection">
+            <ng-container *ngFor="let ticket of ticketCollection; let i = index">
+            <ul class="list-group"
+                *ngIf="ticket.status === 'open'"
+                dnd-sortable [sortableIndex]="i"
+                (drag)="onDrag(ticket)"
+                (drop)="updateStatus(this.draggedTicket, 'open')">
+                <li class="list-group-item">
+                    {{ticket.label}} ({{ ticket.status }})
+                </li>
+            </ul>
+        </ng-container>
+        </div>
+    </div>
+    </div>
+    <div class="col-sm-3">
+    <div class="panel panel-success">
+        <div class="panel-heading">
+        Dropped
+        </div>
+        <div class="panel-body" dnd-sortable-container [dropZones]="['tickets-zone']"
+             [sortableData]="ticketCollection">
+            <ng-container *ngFor="let ticket of ticketCollection ; let i = index">
+                <ul class="list-group"
+                    *ngIf="ticket.status === 'dropped'"
+                    dnd-sortable [sortableIndex]="i"
+                    (drag)="onDrag(ticket)"
+                    (drop)="updateStatus(this.draggedTicket, 'dropped')">
+                    <li class="list-group-item">
+                        {{ticket.label}} ({{ ticket.status }})
+                    </li>
+                </ul>
+            </ng-container>
+        </div>
+    </div>
+    </div>
+    <div class="col-sm-3">
+    <div class="panel panel-success">
+        <div class="panel-heading">
+        Validation
+        </div>
+        <div class="panel-body" dnd-sortable-container [dropZones]="['tickets-zone']"
+             [sortableData]="ticketCollection">
+            <ng-container *ngFor="let ticket of ticketCollection ; let i = index">
+                <ul class="list-group"
+                    *ngIf="ticket.status === 'validated'"
+                    dnd-sortable [sortableIndex]="i"
+                    (drag)="onDrag(ticket)"
+                    (drop)="updateStatus(this.draggedTicket, 'validated')">
+                    <li class="list-group-item">
+                        {{ticket.label}} ({{ ticket.status }})
+                    </li>
+                </ul>
+            </ng-container>
+        </div>
+    </div>
+    </div>
+</div>
+-->
+<div class="container-fluid">
+    <footer >
+    </footer>
+</div>

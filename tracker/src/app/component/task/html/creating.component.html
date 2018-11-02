@@ -1,0 +1,51 @@
+<div class="container-fluid">
+    <div class="firstj jumbotron">
+        <h1>{{ name }}</h1>
+        <home></home>
+    </div>
+</div>
+<alert></alert>
+<div class="container">
+    <div class="creating jumbotron">
+        <form name="form" (ngSubmit)="f.form.valid && create()" #f="ngForm" novalidate>
+            <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !label.valid }">
+                <input class="form-control form-control-lg" placeholder="Label" type="text" name="label"
+                       [(ngModel)]="model.label" #label="ngModel" required />
+                <div *ngIf="f.submitted && !label.valid" class="help-block">Label is required</div>
+            </div>
+            <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !application.valid }">
+                <select class="form-control form-control-lg"
+                       name="application" [(ngModel)]="model.application"
+                       #application="ngModel" required>
+                    <option *ngFor="let application of applications">{{ application.label }}</option>
+                </select>
+                <div *ngIf="f.submitted && !application.valid" class="help-block">
+                    Application is required</div>
+            </div>
+            <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !module_set.valid }">
+                <select class="form-control form-control-lg"
+                       name="module_set" [(ngModel)]="model.module_set"
+                       #module_set="ngModel" required multiple>
+                    <option *ngFor="let module of modules">{{ module.label }}</option>
+                </select>
+                <small class="form-text text-muted">you can select multiple options by holding "CTRL" and clicking</small>
+                <div *ngIf="f.submitted && !module_set.valid" class="help-block">
+                    Module is required </div>
+            </div>
+            <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !description.valid }">
+                <textarea class="form-control form-control-lg" placeholder="Description" type="text" name="description"
+                          [(ngModel)]="model.description" #description="ngModel" required>
+                </textarea>
+                <small id="DescriptionHelp" class="form-text text-muted">Do yourself a favour : be as exhaustive as you can !</small>
+                <div *ngIf="f.submitted && !description.valid" class="help-block">Description is required</div>
+            </div>
+            <div class="form-group">
+                <button [disabled]="loading" class="btn btn-lg">Create</button>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="container-fluid">
+    <footer >
+    </footer>
+</div>

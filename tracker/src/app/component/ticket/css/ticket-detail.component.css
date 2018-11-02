@@ -1,0 +1,101 @@
+span {
+  cursor: pointer;
+}
+
+.jumbotron {
+  background-color: white;
+}
+
+.ticket-summary-details .firstj {
+  background-color:  #0097a7;
+}
+
+.commentary-section .chatj {
+  background-color:  #0097a7;
+}
+
+/*First Cartouche */
+
+.title {
+  text-align:center;
+  display:table;
+}
+
+.roadmapSprint {
+  text-align:center;
+  display:table;
+}
+
+.details {
+  text-align:center;
+  display:table;
+}
+
+.row {
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+.repport {
+  text-align:center;
+  display:table;
+}
+
+.addPrimaryData {
+  text-align:center;
+  display:table;
+}
+
+/* Seconde Cartouche */
+
+.ticket-supp-details {
+  text-align:center;
+  display:table;
+}
+
+.description {
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  width:100%;
+}
+
+.phases {
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  width:100%;
+}
+
+.information {
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  width:100%;
+}
+
+.link {
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  width:100%;
+}
+
+.pieces {
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  width:100%;
+}
+
+/* Third Cartouche */
+
+.comment {
+  height: 75%;
+  width: 50%;
+}

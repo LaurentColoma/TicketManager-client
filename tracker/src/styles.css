@@ -1,0 +1,39 @@
+/* You can add global styles to this file, and also import other style files */
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+  background-color: #eeeeee;
+  margin: 0 0 100px;
+  padding: 25px;
+}
+
+footer {
+    background-color: #0097a7;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 100px;
+    width: 100%;
+    overflow:hidden;
+}
+
+h1 {
+  color: black;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 250%;
+  vertical-align:middle;
+  display:table-cell;
+}
+
+button {
+  border-radius: 100px 100px 100px 100px;
+  font-face: 'Comic Sans MS';
+  font-size: larger;
+  color: white;
+  background-color: #8d6e63;
+  border: 3pt ridge lightgrey;
+  cursor: pointer;
+}

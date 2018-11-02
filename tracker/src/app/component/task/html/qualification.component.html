@@ -1,0 +1,161 @@
+<div class="container-fluid">
+    <div class="firstj jumbotron">
+        <h1>{{ name }}</h1>
+        <home></home>
+    </div>
+</div>
+<alert></alert>
+<div class="container">
+    <div class="jumbotron">
+        <h3>Ticket's List</h3>
+        <ul>
+            <ng-container *ngFor="let ticket of ticketsCollection">
+            <li *ngIf="ticket.status === 'draft'"
+                [class.selected]="ticket === selectedTicket"
+                (click)="onSelect(ticket)"
+                (click)="changeShowStatus(true)">
+            {{ ticket.label }}
+            </li>
+            </ng-container>
+        </ul>
+    </div>
+</div>
+<div *ngIf="showHide === true" class="displaySelectedTicket container-fluid">
+    <span class="glyphicon glyphicon-chevron-left float-left"></span>
+    <span class="glyphicon glyphicon-chevron-right float-right"></span>
+    <div class="secondj jumbotron">
+        <!-- in ng submut add the function link to the form-->
+        <form name="form" (ngSubmit)="f.form.valid && update(this.selectedTicket)" #f="ngForm" novalidate>
+           <div class="ticket-title">
+            <h3>Ticket: {{ this.selectedTicket.label }}</h3>
+            </div>
+            <!-- Additionnal Information -->
+            <div class="details">
+                <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !impact.valid }">
+                    <h4>Impact</h4>
+                    <select class="form-control form-control-lg"
+                           name="impact" [(ngModel)]="model.impact"
+                           #impact="ngModel" required>
+                        <option *ngFor="let impact of impacts">{{ impact.label }}</option>
+                    </select>
+                    <div *ngIf="f.submitted && !impact.valid" class="help-block">
+                        Impact is required</div>
+                </div>
+            </div>
+            <div class="details">
+                <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !priority.valid }">
+                    <h4>Priority</h4>
+                    <select class="form-control form-control-lg"
+                           name="priority" [(ngModel)]="model.priority"
+                           #priority="ngModel" required>
+                        <option *ngFor="let priority of priorities">{{ priority.label }}</option>
+                    </select>
+                    <div *ngIf="f.submitted && !priority.valid" class="help-block">
+                        Priority is required</div>
+                </div>
+            </div>
+            <div class="details">
+                <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !time_sensitiveness.valid }">
+                    <h4>Time Sensitiveness</h4>
+                    <select class="form-control form-control-lg"
+                           name="time_sensitiveness" [(ngModel)]="model.time_sensitiveness"
+                           #time_sensitiveness="ngModel" required>
+                        <option *ngFor="let time_sensitiveness of time_sensitivenesses">{{ time_sensitiveness.label }}</option>
+                    </select>
+                    <div *ngIf="f.submitted && !time_sensitiveness.valid" class="help-block">
+                        Time Sensitiveness is required</div>
+                </div>
+            </div>
+            <div class="details">
+                <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !application.valid }">
+                    <h4>Application</h4>
+                    <select class="form-control form-control-lg"
+                           name="application" [(ngModel)]="model.application"
+                           #application="ngModel" required>
+                        <option *ngFor="let application of applications">{{ application.label }}</option>
+                    </select>
+                    <div *ngIf="f.submitted && !application.valid" class="help-block">
+                        Application is required</div>
+                </div>
+            </div>
+            <div class="details">
+                <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !module_set.valid }">
+                    <h4>Module</h4>
+                    <select class="form-control form-control-lg"
+                           name="module_set" [(ngModel)]="model.module_set"
+                           #module_set="ngModel" required multiple>
+                        <option *ngFor="let module of modules">{{ module.label }}</option>
+                    </select>
+                    <small class="form-text text-muted">you can select multiple options by holding "CTRL" and clicking</small>
+                    <div *ngIf="f.submitted && !module_set.valid" class="help-block">
+                        Module is required </div>
+                </div>
+            </div>
+            <hr>
+            <!-- RACI -->
+            <div class="details">
+                <!-- Responsible was here, but this one must be set when the ticket is created -->
+                <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !responsible.valid }">
+                    <h4>Responsible</h4>
+                    <select class="form-control form-control-lg"
+                           name="responsible" [(ngModel)]="model.responsible"
+                           #responsible="ngModel" required>
+                        <option *ngFor="let user of users">{{ user.username }}</option>
+                    </select>
+                    <small class="form-text text-muted">R in the RACI model</small>
+                    <div *ngIf="f.submitted && !responsible.valid" class="help-block">
+                        Responsible is required</div>
+                </div>
+            </div>
+            <div class="details">
+                <!-- Responsible was here, but this one must be set when the ticket is created -->
+                <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !accountable.valid }">
+                    <h4>Accountable</h4>
+                    <select class="form-control form-control-lg"
+                           name="accountable" [(ngModel)]="model.accountable"
+                           #accountable="ngModel" required>
+                        <option *ngFor="let user of users">{{ user.username }}</option>
+                    </select>
+                    <small class="form-text text-muted">A in the RACI model</small>
+                    <div *ngIf="f.submitted && !accountable.valid" class="help-block">
+                        Accountable is required</div>
+                </div>
+            </div>
+            <div class="details">
+                <!-- Responsible was here, but this one must be set when the ticket is created -->
+                <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !consulted_set.valid }">
+                    <h4>Consultors</h4>
+                    <select class="form-control form-control-lg"
+                           name="consulted_set" [(ngModel)]="model.consulted_set"
+                           #consulted_set="ngModel" required multiple>
+                        <option *ngFor="let user of users">{{ user.username }}</option>
+                    </select>
+                    <small class="form-text text-muted">C in the RACI model</small>
+                    <div *ngIf="f.submitted && !accountable.valid" class="help-block">
+                        Consultor(s) is required</div>
+                </div>
+            </div>
+            <div class="details">
+                <!-- Responsible was here, but this one must be set when the ticket is created -->
+                <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !informed_set.valid }">
+                    <h4>Informed</h4>
+                    <select class="form-control form-control-lg"
+                           name="informed_set" [(ngModel)]="model.informed_set"
+                           #informed_set="ngModel" required multiple>
+                        <option *ngFor="let user of users">{{ user.username }}</option>
+                    </select>
+                    <small class="form-text text-muted">I in the RACI model</small>
+                    <div *ngIf="f.submitted && !informed_set.valid" class="help-block">
+                        Informed is required</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <button [disabled]="loading"class="btn btn-lg">Enregistrer</button>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="container-fluid">
+    <footer>
+    </footer>
+</div>

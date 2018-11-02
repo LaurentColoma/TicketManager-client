@@ -1,0 +1,18 @@
+.container-fluid .firstj {
+  background-color:  #0097a7;
+}
+
+.row {
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background-color:  #ffffff;
+}
+
+.panel-body {
+  height: 50px;
+}
+
+ul {
+  height: 50px;
+}
