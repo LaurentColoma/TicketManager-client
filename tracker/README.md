@@ -1,27 +1,31 @@
-# Tracker
+# Ticket Manager:
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.5.0.
+## client:
 
-## Development server
+### Introduction
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+This is the frontend of a ticket managing web-application. It has been developed using [Angular](https://angular.io/).
 
-## Code scaffolding
+### Licence
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+The entire code is under the [MIT](https://en.wikipedia.org/wiki/MIT_License) licence, you are totally free to re-use it for whatever purpose you want.
 
-## Build
+### Installation
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+#### - Prerequisites:
 
-## Running unit tests
+````
+sudo apt update
+sudo apt upgrade
+````
+Be sure to have the latest of [Node.js](https://nodejs.org/en/), to be sure check your node version:
+````
+node -v
+````
+If you don't have node, you have to follow the instruction on [nodejs.org](https://nodejs.org/en/).
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Also don't forget to clone!
+````
+git clone https://github.com/LaurentColoma/TicketManager-server.git
+````
 
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
