@@ -12,7 +12,7 @@ import { Observable } from 'rxjs';
 
 @Injectable()
 export class TicketService {
-  private apiUrl = 'http://127.0.0.1:8000/tickets';
+  private apiUrl = 'http://0.0.0.0:8000/tickets';
 
   constructor(private http: Http, private _http: HttpClient) { }
 

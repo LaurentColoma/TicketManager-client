@@ -10,31 +10,31 @@ export class UserService {
     constructor(private http: Http) { }
 
     getAll() {
-      return this.http.get('http://127.0.0.1:8000/users/?format=json', this.jwt())
+      return this.http.get('http://0.0.0.0:8000/users/?format=json', this.jwt())
         .toPromise()
         .then(response => response.json())
         .catch(this.handleError);
     }
 
     getById(id: number) {
-      return this.http.get('http://127.0.0.1:8000/users/?format=json' + id, this.jwt())
+      return this.http.get('http://0.0.0.0:8000/users/?format=json' + id, this.jwt())
         .toPromise()
         .then(response => response.json())
         .catch(this.handleError);
     }
 
     create(user: User) {
-        return this.http.post('http://127.0.0.1:8000/users/', user, this.jwt())
+        return this.http.post('http://0.0.0.0:8000/users/', user, this.jwt())
           .map((response: Response) => response.json());
     }
 
     update(user: User) {
-        return this.http.put('http://127.0.0.1:8000/users/' + user.id, user, this.jwt())
+        return this.http.put('http://0.0.0.0:8000/users/' + user.id, user, this.jwt())
           .map((response: Response) => response.json());
     }
 
     delete(id: number) {
-        return this.http.delete('http://127.0.0.1:8000/users/' + id, this.jwt())
+        return this.http.delete('http://0.0.0.0:8000/users/' + id, this.jwt())
           .map((response: Response) => response.json());
     }
 

@@ -4,7 +4,6 @@ import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DndModule } from 'ng2-dnd';
-import { GridsterModule } from "angular-gridster2";
 
 // Component
 import { AppComponent } from './app.component';
@@ -75,7 +74,6 @@ import { Routing } from './app.routing';
     ReactiveFormsModule,
     Routing,
     DndModule.forRoot(),
-    GridsterModule,
   ],
   providers: [
     TicketService,

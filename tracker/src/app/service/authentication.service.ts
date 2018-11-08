@@ -18,7 +18,7 @@ export class AuthenticationService {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
       });
-      return this.http.post('http://127.0.0.1:8000/auth-jwt/', { username: username, password: password }, { headers: headers})
+      return this.http.post('http://0.0.0.0:8000/auth-jwt/', { username: username, password: password }, { headers: headers})
         .map((response: Response) => {
               // login successful if there's a jwt token in the response
               const token = response.json() && response.json().token;

@@ -6,7 +6,7 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class DataService {
-  private apiUrl = 'http://127.0.0.1:8000';
+  private apiUrl = 'http://0.0.0.0:8000';
 
   constructor(private http: Http) {}
 

@@ -6,7 +6,7 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class SprintService {
-  private apiUrl = 'http://127.0.0.1:8000/sprint';
+  private apiUrl = 'http://0.0.0.0:8000/sprint';
 
   constructor(private http: Http) {}
 
