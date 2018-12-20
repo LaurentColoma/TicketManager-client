@@ -5,105 +5,31 @@
     </div>
 </div>
 <alert></alert>
-<!--
 <div class="row">
     <div class="col-sm-3">
-    <div class="panel panel-warning">
-        <div class="panel-heading">
-        Available tickets
-        </div>
-        <div class="panel-body" dnd-sortable-container [dropZones]="['tickets-zone']"
-             [sortableData]="ticketCollection">
-            <ng-container *ngFor="let ticket of ticketCollection ; let i = index">
-                <ul class="list-group"
-                    *ngIf="ticket.status === 'in_progress'"
-                    dnd-sortable [sortableIndex]="i"
-                    (drag)="onDrag(ticket)"
-                    (drop)="updateStatus(this.draggedTicket, 'in_progress');
-                            updateSprint(this.draggedTicket, 'TBD');
-                            updateResponsible(this.draggedTicket, this.draggedTicket.responsible)">
-                    <li class="list-group-item">
-                        {{ticket.label}} ({{ ticket.status }})
-                    </li>
-                </ul>
-            </ng-container>
-        </div>
-    </div>
-    </div>
-</div>
-<div class="row">
-    <div *ngFor="let user of users" class="col-sm-3">
-        {{ user.username }}
-    <div class="panel panel-success">
-        <div class="panel-heading">
-        On hold
-        </div>
-        <div class="panel-body" dnd-sortable-container [dropZones]="['tickets-zone']"
-             [sortableData]="ticketCollection">
-            <ng-container *ngFor="let ticket of ticketCollection ; let i = index">
-                <ul class="list-group"
-                    *ngIf="ticket.status === 'on_hold' && ticket.responsible === user.username"
-                    dnd-sortable [sortableIndex]="i"
-                    (drag)="onDrag(ticket)"
-                    (drop)="updateSprint(this.draggedTicket, this.draggedTicket.sprint);
-                    updateResponsible(this.draggedTicket, user.username);
-                    updateStatus(this.draggedTicket, 'on_hold')">
-                    <li class="list-group-item">
-                        {{ticket.label}} ({{ ticket.status }})
-                    </li>
-                </ul>
-            </ng-container>
-        </div>
-    </div>
-    </div>
-</div>
-<div class="container">
-    <div class="panel panel-info">
-        <div class="panel-heading">
-       Ready
-        </div>
-        <div class="panel-body" dnd-sortable-container [dropZones]="['tickets-zone']"
-             [sortableData]="ticketCollection">
-            <ng-container *ngFor="let ticket of ticketCollection; let i = index">
-                <ul class="list-group"
-                    *ngIf="ticket.status === 'ready'"
-                    dnd-sortable [sortableIndex]="i"
-                    (drag)="onDrag(ticket)"
-                    (drop)="updateSprint(this.draggedTicket, this.draggedTicket.sprint);
-                     updateResponsible(this.draggedTicket, this.draggedTicket.responsible);
-                     updateStatus(this.draggedTicket, 'ready')">
-                    <li class="list-group-item">
-                        {{ticket.label}} ({{ ticket.status }})
-                    </li>
-                </ul>
-            </ng-container>
+        <div dnd-sortable-container [sortableData]="containers" [dropZones]="['container-dropZone']">
+            <div class="col-sm3"
+                 *ngFor="let container of containers; let i = index"
+                 dnd-sortable [sortableIndex]="i" [dragEnabled]="dragOperation">
+                <div class="panel panel-warning"
+                     dnd-sortable-container [sortableData]="container.tickets" [dropZones]="['ticket-dropZone']">
+                    <div class="panel-heading">
+                        {{ container.id }} - {{ container.name }}
+                    </div>
+                    <div class="panel-body">
+                        <ul class="list-group" >
+                            <li class="list-group-item" *ngFor="let ticket of container.tickets; let j = index"
+                            [sortableIndex]="j" [dragData]="ticket" dnd-sortable [dragEnabled]="!dragOperation" (drag)="onDrag(ticket)"
+                                (drop)="updateStatus(this.draggedTicket, container.name); updateSprint(this.draggedTicket, 'TDB')">
+                                {{ ticket.id }} - {{ ticket.label }}
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
-<div class="container">
-    <div class="panel panel-info">
-        <div class="panel-heading">
-       Dropped
-        </div>
-        <div class="panel-body" dnd-sortable-container [dropZones]="['tickets-zone']"
-             [sortableData]="ticketCollection">
-            <ng-container *ngFor="let ticket of ticketCollection ; let i = index">
-                <ul class="list-group"
-                    *ngIf="ticket.status === 'dropped'"
-                    dnd-sortable [sortableIndex]="i"
-                    (drag)="onDrag(ticket)"
-                    (drop)="updateSprint(this.draggedTicket, this.draggedTicket.sprint);
-                    updateResponsible(this.draggedTicket, this.draggedTicket.responsible);
-                    updateStatus(this.draggedTicket, 'dropped');">
-                    <li class="list-group-item">
-                        {{ticket.label}} ({{ ticket.status }})
-                    </li>
-                </ul>
-            </ng-container>
-        </div>
-    </div>
-</div>
--->
 <div class="container-fluid">
     <footer >
     </footer>

@@ -9,7 +9,7 @@
     <div class="jumbotron">
         <h3>Ticket's List</h3>
         <ul>
-            <ng-container *ngFor="let ticket of ticketsCollection">
+            <ng-container *ngFor="let ticket of ticketCollection">
             <li *ngIf="ticket.status === 'draft'"
                 [class.selected]="ticket === selectedTicket"
                 (click)="onSelect(ticket)"

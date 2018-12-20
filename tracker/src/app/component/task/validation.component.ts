@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DatePipe } from '@angular/common';
 
 import { Ticket } from '../../data/tickets';
 
@@ -18,11 +19,22 @@ export class ValidationComponent implements OnInit{
   draggedTicket: Ticket;
   name = 'Ticket\'s Validation';
   protected ticketCollection: Ticket[];
+  dragOperation: boolean = false;
+  containers: Array<Container>;
 
   constructor (
     private ticketService: TicketService,
-    private alertService: AlertService,
-    ) { }
+    private alertService: AlertService,) {
+    this.ticketService.getAllTicket().subscribe(tickets => {
+      this.ticketCollection = tickets;
+      this.containers = [
+        new Container(1, 'planed', this.ticketCollection),
+        new Container(2, 'in_progress', this.ticketCollection),
+        new Container(3, 'dropped', this.ticketCollection)
+      ];
+      console.log(this.containers[0])
+    });
+  }
 
   ngOnInit() {
     this.ticketService.getAllTicket().subscribe(tickets => {
@@ -45,5 +57,8 @@ export class ValidationComponent implements OnInit{
           this.alertService.error(error);
         });
   }
+}
 
+class Container {
+  constructor(public id: number, public name: string, public tickets: Ticket[]) {}
 }

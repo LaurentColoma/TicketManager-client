@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DatePipe } from '@angular/common';
 
 import { Ticket } from '../../data/tickets';
 import { User } from '../../data/user';
@@ -21,18 +22,29 @@ export class DevelopmentComponent implements OnInit{
   users: User[];
   draggedTicket: Ticket;
   name = 'Ticket\'s Development';
-   protected ticketCollection: Ticket[];
+  protected ticketCollection: Ticket[];
+  dragOperation: boolean = false;
+  containers: Array<Container>;
+  dateStart: string;
 
   constructor (
     private ticketService: TicketService,
     private alertService: AlertService,
-    private userService: UserService,
-    ) { }
+    private userService: UserService,) {
+    const dateNow = new DatePipe('en-EN');
+    this.dateStart = dateNow.transform(new Date(), 'yyyy-MM-dd');
+    this.ticketService.getAllTicket().subscribe(tickets => {
+      this.ticketCollection = tickets;
+      this.containers = [
+        new Container(1, 'planed', this.ticketCollection),
+        new Container(2, 'in_progress', this.ticketCollection),
+        new Container(3, 'dropped', this.ticketCollection)
+      ];
+      console.log(this.containers[0])
+    });
+  }
 
   ngOnInit() {
-    this.ticketService.getAllTicket().subscribe(tickets => {
-      this.ticketCollection =tickets;
-    });
     this.getUsers();
   }
 
@@ -81,4 +93,8 @@ export class DevelopmentComponent implements OnInit{
           this.alertService.error(error);
         });
   }
+}
+
+class Container {
+  constructor(public id: number, public name: string, public tickets: Ticket[]) {}
 }

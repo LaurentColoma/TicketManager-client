@@ -1,4 +1,4 @@
-export class Time_sensitiveness {
+export class TimeSensitiveness {
   id:number;
   label:string;
   color:string;

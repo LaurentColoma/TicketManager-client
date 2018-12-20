@@ -20,8 +20,6 @@ export class TicketService {
     return this._http.get<Array<Ticket>>(`${this.apiUrl}/?format=json`)
   }
 
-
-
   getPlaned() {
     const url = `${this.apiUrl}/?format=json`;
     return this.http.get(url)
@@ -46,12 +44,12 @@ export class TicketService {
   }
 
   createTicket(ticket: Ticket) {
-    return this.http.post('http://127.0.0.1:8000/tickets/', ticket, this.jwt())
+    return this.http.post('http://0.0.0.0:8000/tickets/', ticket, this.jwt())
           .map(response => response.json());
   }
 
   updateTicket(ticket: Ticket) {
-    return this.http.put('http://127.0.0.1:8000/tickets/' + ticket.id + '/', ticket, this.jwt())
+    return this.http.put('http://0.0.0.0:8000/tickets/' + ticket.id + '/', ticket, this.jwt())
           .map(response => response.json());
   }
 

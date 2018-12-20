@@ -9,7 +9,7 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class CommentService {
-  private apiUrl = 'http://127.0.0.1:8000/comment/';
+  private apiUrl = 'http://0.0.0.0:8000/comment/';
 
   constructor(private http: Http) {
   }

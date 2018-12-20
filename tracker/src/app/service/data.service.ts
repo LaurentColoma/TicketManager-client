@@ -1,85 +1,62 @@
 import {Injectable} from '@angular/core';
 import { Http, Headers, RequestOptions } from '@angular/http';
+import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { Observable } from 'rxjs';
 
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
+
+import { Impact } from '../data/impact';
+import { Priority } from '../data/priority';
+import { TimeSensitiveness } from '../data/time-sensitiveness';
+import { Application } from '../data/application';
+import { Version } from '../data/version';
+import { Module } from '../data/module';
+import { Status } from '../data/status';
+import { User } from '../data/user';
+import { Group } from '../data/group';
 
 @Injectable()
 export class DataService {
   private apiUrl = 'http://0.0.0.0:8000';
 
-  constructor(private http: Http) {}
+  constructor(private http: Http, private _http: HttpClient) { }
 
-  getImpacts() {
-    const url = `${this.apiUrl}/impact/?format=json`;
-    return this.http.get(url, this.jwt())
-      .toPromise()
-      .then(response => response.json())
-      .catch(this.handleError);
+  getImpacts(): Observable<Impact> {
+    return this._http.get<Impact>(`${this.apiUrl}/impact/?format=json`)
   }
 
-  getPriorities() {
-    const url = `${this.apiUrl}/priority/?format=json`;
-    return this.http.get(url, this.jwt())
-      .toPromise()
-      .then(response => response.json())
-      .catch(this.handleError);
+  getPriorities(): Observable<Priority> {
+    return this._http.get<Priority>(`${this.apiUrl}/priority/?format=json`)
   }
 
-  getTimeSensitivenesses() {
-    const url = `${this.apiUrl}/timesensitiveness/?format=json`;
-    return this.http.get(url, this.jwt())
-      .toPromise()
-      .then(response => response.json())
-      .catch(this.handleError);
+  getTimeSensitivenesses(): Observable<TimeSensitiveness> {
+    return this._http.get<TimeSensitiveness>(`${this.apiUrl}/timesensitiveness/?format=json`)
   }
 
-  getApplications() {
-    const url = `${this.apiUrl}/application/?format=json`;
-    return this.http.get(url, this.jwt())
-      .toPromise()
-      .then(response => response.json())
-      .catch(this.handleError);
+  getApplications(): Observable<Application> {
+    return this._http.get<Application>(`${this.apiUrl}/application/?format=json`)
   }
 
-  getVersions() {
-    const url = `${this.apiUrl}/version/?format=json`;
-    return this.http.get(url, this.jwt())
-      .toPromise()
-      .then(response => response.json())
-      .catch(this.handleError);
+  getVersion(): Observable<Version> {
+    return this._http.get<Version>(`${this.apiUrl}/version/?format=json`)
   }
 
-  getModules() {
-    const url = `${this.apiUrl}/module/?format=json`;
-    return this.http.get(url, this.jwt())
-      .toPromise()
-      .then(response => response.json())
-      .catch(this.handleError);
+  getModules(): Observable<Module> {
+    return this._http.get<Module>(`${this.apiUrl}/module/?format=json`)
   }
 
-  getStatus() {
-    const url = `${this.apiUrl}/status/?format=json`;
-    return this.http.get(url, this.jwt())
-      .toPromise()
-      .then(response => response.json())
-      .catch(this.handleError);
+  getStatus(): Observable<Status> {
+    return this._http.get<Status>(`${this.apiUrl}/status/?format=json`)
   }
 
-  getUsers() {
-    const url = `${this.apiUrl}/users/?format=json`;
-    return this.http.get(url, this.jwt())
-      .toPromise()
-      .then(response => response.json())
-      .catch(this.handleError);
+  getUsers(): Observable<User> {
+    return this._http.get<User>(`${this.apiUrl}/users/?format=json`)
   }
 
-  getGroups() {
-    const url = `${this.apiUrl}/groups/?format=json`;
-    return this.http.get(url, this.jwt())
-      .toPromise()
-      .then(response => response.json())
-      .catch(this.handleError);
+  getGroup(): Observable<Group> {
+    return this._http.get<Group>(`${this.apiUrl}/group/?format=json`)
   }
 
   private handleError(error: any) {

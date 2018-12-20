@@ -1,13 +1,12 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { Component} from '@angular/core';
 import { DatePipe } from '@angular/common';
 
 import { Ticket} from '../../data/tickets';
 import { Comment } from '../../data/comment';
 
-import { TicketService} from '../../service/ticket.service';
 import { CommentService } from '../../service/comment.service';
 import { AlertService } from '../../service/alert.service';
+import {DataTransferService} from "../../service/dataTransfer.service";
 
 import 'rxjs/add/operator/switchMap';
 
@@ -17,7 +16,7 @@ import 'rxjs/add/operator/switchMap';
   styleUrls: ['./css/ticket-detail.component.css']
 })
 
-export class TicketDetailComponent implements OnInit {
+export class TicketDetailComponent {
   ticket: Ticket;
   comments: Comment[];
   error: any;
@@ -26,21 +25,12 @@ export class TicketDetailComponent implements OnInit {
   dateCreation: string;
 
   constructor(
-    private ticketService: TicketService,
     private commentService: CommentService,
     private alertService: AlertService,
-    private router: Router,
-    private route: ActivatedRoute,
-  ) {
+    private dataTransfer: DataTransferService) {
     const dateNow = new DatePipe('en-EN');
     this.dateCreation = dateNow.transform(new Date(), 'yyyy/mm/dd hh:mm:ss');
-  }
-
-  ngOnInit(): void {
-    this.route.paramMap
-      .switchMap((params: ParamMap) => this.ticketService.getTicket(+params.get('id')))
-      .subscribe(ticket => this.ticket = ticket);
-    this.getComments();
+    this.ticket = this.dataTransfer._getDataHandler();
   }
 
   refresh(): void {

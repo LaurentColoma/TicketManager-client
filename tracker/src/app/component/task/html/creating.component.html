@@ -6,8 +6,27 @@
 </div>
 <alert></alert>
 <div class="container">
-    <div class="creating jumbotron">
-        <form name="form" (ngSubmit)="f.form.valid && create()" #f="ngForm" novalidate>
+  <mat-form-field>
+    <mat-select placeholder="Select a Ticket model...">
+      <mat-option value="Technique" (onSelectionChange)="_setFormHandler(1)">Technique</mat-option>
+      <mat-option value="Fonctionnel" (onSelectionChange)="_setFormHandler(2)">Fonctionnel</mat-option>
+      <mat-option value="Réglementaire" (onSelectionChange)="_setFormHandler(3)">Réglementaire</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <div class="form-container">
+    <p *ngIf="formHandler === 1">Creating a Technical Ticket</p>
+    <p *ngIf="formHandler === 2">Creating a Functionnal Ticket</p>
+    <p *ngIf="formHandler === 3">Creating a Reglementary Ticket</p>
+  </div>
+</div>
+<div class="container-fluid">
+    <footer >
+    </footer>
+</div>
+
+
+<!--
+<form name="form" (ngSubmit)="f.form.valid && create()" #f="ngForm" novalidate>
             <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !label.valid }">
                 <input class="form-control form-control-lg" placeholder="Label" type="text" name="label"
                        [(ngModel)]="model.label" #label="ngModel" required />
@@ -43,9 +62,4 @@
                 <button [disabled]="loading" class="btn btn-lg">Create</button>
             </div>
         </form>
-    </div>
-</div>
-<div class="container-fluid">
-    <footer >
-    </footer>
-</div>
+-->

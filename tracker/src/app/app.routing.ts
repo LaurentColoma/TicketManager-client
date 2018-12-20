@@ -30,11 +30,11 @@ const appRoutes: Routes = [
         component: TicketComponent,
       },
       {
-        path: 'details/:id',
+        path: 'details',
         component: TicketDetailComponent,
       },
       {
-        path: 'creating',
+        path: 'creation',
         component: CreatingComponent,
       },
       {

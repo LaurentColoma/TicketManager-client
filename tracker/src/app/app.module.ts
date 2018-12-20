@@ -4,6 +4,8 @@ import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DndModule } from 'ng2-dnd';
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { MaterialModule } from "./material.module";
 
 // Component
 import { AppComponent } from './app.component';
@@ -37,6 +39,7 @@ import { AuthenticationService } from './service/authentication.service';
 import { UserService } from './service/user.service';
 import { SprintService } from './service/sprint.service';
 import { CommentService } from './service/comment.service';
+import { DataTransferService } from "./service/dataTransfer.service";
 
 // Routing
 import { Routing } from './app.routing';
@@ -74,6 +77,8 @@ import { Routing } from './app.routing';
     ReactiveFormsModule,
     Routing,
     DndModule.forRoot(),
+    BrowserAnimationsModule,
+    MaterialModule,
   ],
   providers: [
     TicketService,
@@ -83,6 +88,7 @@ import { Routing } from './app.routing';
     UserService,
     SprintService,
     CommentService,
+    DataTransferService,
   ],
   bootstrap: [AppComponent]
 })

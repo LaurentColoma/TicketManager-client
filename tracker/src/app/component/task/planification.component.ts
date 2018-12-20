@@ -21,8 +21,7 @@ export class PlanificationComponent implements OnInit {
   sprints: Sprint[];
   draggedTicket: Ticket;
   name = 'Ticket\'s Planification';
-  ticketCollection: Ticket[];
-  ticketPlaned: Ticket[];
+  protected ticketCollection: Ticket[];
   dateStart: string;
   dragOperation: boolean = false;
   containers: Array<Container>;
@@ -35,11 +34,8 @@ export class PlanificationComponent implements OnInit {
     this.dateStart = dateNow.transform(new Date(), 'yyyy-MM-dd');
     this.ticketService.getAllTicket().subscribe(tickets => {
       this.ticketCollection = tickets;
-      console.log(this.ticketCollection);
-      this.setPlaned(this.ticketCollection);
-      console.log(this.ticketPlaned);
       this.containers = [
-        new Container(1, 'planed', this.ticketPlaned),
+        new Container(1, 'planed', this.ticketCollection),
         new Container(2, 'in_progress', this.ticketCollection),
         new Container(3, 'dropped', this.ticketCollection)
       ];
@@ -49,26 +45,14 @@ export class PlanificationComponent implements OnInit {
 
   ngOnInit() {
     this.getSprints();
-
   }
 
   onDrag(ticket: Ticket): void {
     this.draggedTicket = ticket;
   }
 
-  setPlaned(tickets: Ticket[]): void {
-    let i = 0;
-    while (tickets[i]) {
-      if (tickets[i].status === 'planed') {
-        this.ticketPlaned.push(tickets[i]);
-      }
-      i = i + 1;
-    }
-  }
-
   getSprints(): void {
-    this.sprintService
-      .getSprints()
+    this.sprintService.getSprints()
       .then(sprints => this.sprints = sprints);
   }
 

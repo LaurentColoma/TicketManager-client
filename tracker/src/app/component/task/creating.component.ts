@@ -14,39 +14,44 @@ import { Module } from '../../data/module';
   styleUrls: ['./css/creating.component.css']
 })
 
-export class CreatingComponent implements OnInit {
+export class CreatingComponent {
 
   name = 'Creating\'s Ticket';
   model: any = {};
-  modules: Module[];
-  applications: Application[];
-
-  ngOnInit() {
-    this.getApplications();
-    this.getModules();
-  }
+  modules: Module;
+  applications: Application;
+  formHandler: 0;
 
   constructor(private ticketService: TicketService,
               private alertService: AlertService,
               private dataService: DataService,
-              private router: Router) {}
+              private router: Router) {
+    this.getApplications();
+    this.getModules();
+  }
 
   getApplications(): void {
     this.dataService.getApplications()
-        .then(applications => this.applications = applications);
+        .subscribe(applications => this.applications = applications);
   }
 
   getModules(): void {
     this.dataService.getModules()
-        .then(modules => this.modules = modules);
+        .subscribe(modules => this.modules = modules);
+  }
+
+  _setFormHandler(value) {
+    if (this.formHandler != 0)
+      this.formHandler = value
+    console.log(this.formHandler);
   }
 
   create() {
-    this.model['time_sensitiveness'] = 'to be determined';
-    this.model['version_affected_set'] = ['to be determined', ];
-    this.model['priority'] = 'to be determined';
+    this.model['time_sensitiveness'] = 'TBD';
+    this.model['version_affected_set'] = ['TBD'];
+    this.model['priority'] = 'TBD';
     this.model['status'] = 'draft';
-    this.model['impact'] = 'to be determined';
+    this.model['impact'] = 'TBD';
     this.model['sprint'] = 'TBD';
     this.model['roadmap'] = 'TBD';
     this.model['open'] = 'True';

@@ -1,9 +1,9 @@
-import { Component, OnInit} from '@angular/core';
+import { Component} from '@angular/core';
 import { Router} from '@angular/router';
-
 
 import { Ticket} from '../../data/tickets';
 import { TicketService} from '../../service/ticket.service';
+import {DataTransferService} from "../../service/dataTransfer.service";
 
 @Component({
   selector: 'ticket',
@@ -11,26 +11,29 @@ import { TicketService} from '../../service/ticket.service';
   styleUrls: ['./css/ticket.component.css']
 })
 
-export class TicketComponent implements OnInit {
+export class TicketComponent {
 
-  protected ticketCollection: Ticket[];
+  ticketCollection: Ticket[];
   responsible: any;
   error: any;
-  selectedTicket: Ticket;
   name = 'Ticket\'s List';
 
-  constructor(private ticketService: TicketService,
-              private router: Router) { }
-
-
-  ngOnInit() {
+  constructor(
+    private ticketService: TicketService,
+    private router: Router,
+    private dataTransfer: DataTransferService) {
     this.ticketService.getAllTicket().subscribe(tickets => {
       this.ticketCollection = tickets;
     });
   }
 
   onSelect(ticket: Ticket): void {
-    this.selectedTicket = ticket;
-    this.router.navigate(['/details', this.selectedTicket.id]);
+    this.dataTransfer._setDataHandler(ticket);
+    this.router.navigate(['/details'])
+  }
+
+  logout() {
+      localStorage.removeItem('currentUser');
+      this.router.navigate(['/connection'])
   }
 }
