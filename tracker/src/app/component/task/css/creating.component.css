@@ -1,13 +1,22 @@
-.container-fluid .firstj {
-  background-color:  #0097a7;
-}
-
 .container {
   display:flex;
   justify-content:center;
   align-items:center;
+  background-color: white;
+  border-radius: 1ch;
+
 }
 
-.creating {
+.form-container {
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
   background-color: #ffffff;
+  border-radius: 1ch;
+}
+
+.mat-create {
+  background-color: green;
+  color: #fff;
 }

@@ -1,35 +1,37 @@
 <div class="container-fluid">
-<mat-drawer-container class="container" autosize>
-  <mat-drawer #drawer class="sidenav" mode="side">
-    <task></task>
-  </mat-drawer>
+  <div class="container">
+    <mat-drawer-container class="drawer-container" autosize>
+      <mat-drawer #drawer class="sidenav" mode="side">
+        <task></task>
+      </mat-drawer>
 
-  <div #menu class="sidenav-toggler">
-    <button type="button" mat-button (click)="drawer.toggle()">Menu</button>
-    <button type="button" mat-button (click)="logout()">Log Out</button>
+      <div #menu class="sidenav-toggler">
+        <button type="button" mat-button (click)="drawer.toggle()">Menu</button>
+        <button type="button" mat-button (click)="logout()">Log Out</button>
+      </div>
+    
+    <div class="table-container">
+      <table class="table table-bordered table-condensed">
+        <thead style="background-color: #0097a7">
+        <tr>
+          <td>Label</td>
+          <td>Application</td>
+          <td>Module</td>
+          <td>Status</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let ticket of ticketCollection"
+            [class.selected]="ticket === selectedTicket"
+            (click)="onSelect(ticket)">
+          <td>{{ ticket.label }}</td>
+          <td>{{ ticket.application }} {{ ticket.version_affected_set }}</td>
+          <td>{{ ticket.module_set }}</td>
+          <td>{{ ticket.status }}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </mat-drawer-container>
   </div>
-
-  <div class="table-container">
-    <table class="table table-bordered table-condensed">
-      <thead style="background-color: #0097a7">
-      <tr>
-        <td>Label</td>
-        <td>Application</td>
-        <td>Module</td>
-        <td>Status</td>
-      </tr>
-      </thead>
-      <tbody>
-      <tr *ngFor="let ticket of ticketCollection"
-          [class.selected]="ticket === selectedTicket"
-          (click)="onSelect(ticket)">
-        <td>{{ ticket.label }}</td>
-        <td>{{ ticket.application }} {{ ticket.version_affected_set }}</td>
-        <td>{{ ticket.module_set }}</td>
-        <td>{{ ticket.status }}</td>
-      </tr>
-      </tbody>
-    </table>
-  </div>
-</mat-drawer-container>
 </div>

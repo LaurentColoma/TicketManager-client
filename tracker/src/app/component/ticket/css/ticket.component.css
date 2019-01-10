@@ -1,21 +1,27 @@
-tbody td {
-  background-color: #ffffff;
-  cursor: pointer;
-}
-
-table {
-  width: 100%
+.container-fluid {
+  height: 100%;
 }
 
 .container {
-  width: 100%;
   height: 100%;
-  border: 1px solid rgba(0, 0, 0, 0.5);
+  width: 100%;
+}
+
+.drawer-container {
+  width: 100%;
 }
 
 .sidenav-toggler {
-  display: flex;
-  height: 100%;
-  align-items: center;
-  justify-content: center;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  position: center;
+  right: 45%;
+}
+
+.table-container {
+  position: center;
+  width: 100%;
+  top: 5ch;
+  right: 40%;
 }

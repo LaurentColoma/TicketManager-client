@@ -1,10 +1,5 @@
-<div class="container-fluid">
-    <div class="firstj jumbotron">
-        <h1>{{ name }}</h1>
-        <home></home>
-    </div>
-</div>
 <alert></alert>
+<home></home>
 <div class="container">
     <div class="jumbotron">
         <h3>Ticket's List</h3>
@@ -21,15 +16,11 @@
     </div>
 </div>
 <div *ngIf="showHide === true" class="displaySelectedTicket container-fluid">
-    <span class="glyphicon glyphicon-chevron-left float-left"></span>
-    <span class="glyphicon glyphicon-chevron-right float-right"></span>
     <div class="secondj jumbotron">
-        <!-- in ng submut add the function link to the form-->
         <form name="form" (ngSubmit)="f.form.valid && update(this.selectedTicket)" #f="ngForm" novalidate>
            <div class="ticket-title">
             <h3>Ticket: {{ this.selectedTicket.label }}</h3>
             </div>
-            <!-- Additionnal Information -->
             <div class="details">
                 <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !impact.valid }">
                     <h4>Impact</h4>
@@ -92,9 +83,7 @@
                 </div>
             </div>
             <hr>
-            <!-- RACI -->
             <div class="details">
-                <!-- Responsible was here, but this one must be set when the ticket is created -->
                 <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !responsible.valid }">
                     <h4>Responsible</h4>
                     <select class="form-control form-control-lg"
@@ -108,7 +97,6 @@
                 </div>
             </div>
             <div class="details">
-                <!-- Responsible was here, but this one must be set when the ticket is created -->
                 <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !accountable.valid }">
                     <h4>Accountable</h4>
                     <select class="form-control form-control-lg"
@@ -122,7 +110,6 @@
                 </div>
             </div>
             <div class="details">
-                <!-- Responsible was here, but this one must be set when the ticket is created -->
                 <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !consulted_set.valid }">
                     <h4>Consultors</h4>
                     <select class="form-control form-control-lg"
@@ -136,7 +123,6 @@
                 </div>
             </div>
             <div class="details">
-                <!-- Responsible was here, but this one must be set when the ticket is created -->
                 <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !informed_set.valid }">
                     <h4>Informed</h4>
                     <select class="form-control form-control-lg"
@@ -150,12 +136,13 @@
                 </div>
             </div>
             <div class="form-group">
-                <button [disabled]="loading"class="btn btn-lg">Enregistrer</button>
+                <button  [disabled]="loading" mat-raised-button [color]="'create'">Enregistrer</button>
             </div>
         </form>
     </div>
 </div>
+<!--
 <div class="container-fluid">
     <footer>
     </footer>
-</div>
+</div>-->

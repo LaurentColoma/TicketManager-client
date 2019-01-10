@@ -20,7 +20,7 @@ export class CreatingComponent {
   model: any = {};
   modules: Module;
   applications: Application;
-  formHandler: 0;
+  selectedValue: string;
 
   constructor(private ticketService: TicketService,
               private alertService: AlertService,
@@ -38,12 +38,6 @@ export class CreatingComponent {
   getModules(): void {
     this.dataService.getModules()
         .subscribe(modules => this.modules = modules);
-  }
-
-  _setFormHandler(value) {
-    if (this.formHandler != 0)
-      this.formHandler = value
-    console.log(this.formHandler);
   }
 
   create() {

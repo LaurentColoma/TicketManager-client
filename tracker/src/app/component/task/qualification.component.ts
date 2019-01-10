@@ -80,7 +80,7 @@ export class QualificationComponent {
     this.model['description'] = this.selectedTicket.description;
     this.model['id'] = this.selectedTicket.id;
     this.model['status'] = 'planed';
-    this.model['version_affected_set'] = ['0.1'];
+    this.model['version_affected_set'] = ['1'];
     this.model['sprint'] = 'TBD';
     this.model['roadmap'] = 'TBD';
     this.ticketService.updateTicket(this.model)
