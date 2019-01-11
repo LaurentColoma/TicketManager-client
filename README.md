@@ -30,9 +30,9 @@ https://github.com/LaurentColoma/TicketManager-client.git
 ````
 On the server side, you will need to do the following command to populate the database
 ````
-Sudo docker-compose exec ./manage.py loaddata ./server/tracker/imports/json/*.json
+Sudo docker-compose exec web ./manage.py loaddata ./server/tracker/imports/json/*.json
 ````
-**do this after the after having build the server side**
+**do this after the while the server is on**
 
 After cloning the project set yourself in the folder **tracker** and do
 
