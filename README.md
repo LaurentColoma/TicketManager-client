@@ -26,9 +26,16 @@ If you don't have node, you have to follow the instruction on [nodejs.org](https
 
 Also don't forget to clone!
 ````
-git clone https://github.com/LaurentColoma/TicketManager-server.git
+https://github.com/LaurentColoma/TicketManager-client.git
 ````
-After cloning the project set yourself in the folder **tracker** and do:
+On the server side, you will need to do the following command to populate the database
+````
+Sudo docker-compose exec ./manage.py loaddata ./server/tracker/imports/json/*.json
+````
+**do this after the after having build the server side**
+
+After cloning the project set yourself in the folder **tracker** and do
+
 ````
 npm start
 ````
