@@ -6,7 +6,7 @@
     </div>
     <div class="jumbotron">
         <div class="row">
-            <div class="roadmapSprint col-sm-8">
+            <!--<div class="roadmapSprint col-sm-8">
                 <table class="table table-bordered table-condensed">
                     <thead style="background-color: #0097a7">
                         <td>Roadmap</td>
@@ -17,7 +17,7 @@
                         <td>{{ ticket.sprint }}</td>
                     </tbody>
                 </table>
-            </div>
+            </div>-->
             <div class="col-sm-4">
                 <table class="table table-bordered table-condensed">
                     <thead style="background-color: #0097a7">
@@ -137,7 +137,7 @@
             <div *ngIf="f.submitted && !content.valid" class="help-block">You must write something</div>
         </div>
         <div class="form-group">
-            <button (click)="refresh()" [disabled]="loading" class="btn btn-lg">Create</button>
+            <button (click)="refresh()" class="btn btn-lg">Create</button>
         </div>
     </form>
         <h3>Answer</h3>

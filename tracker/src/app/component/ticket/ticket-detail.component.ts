@@ -1,4 +1,4 @@
-import { Component} from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { DatePipe } from '@angular/common';
 
 import { Ticket} from '../../data/tickets';
@@ -16,7 +16,7 @@ import 'rxjs/add/operator/switchMap';
   styleUrls: ['./css/ticket-detail.component.css']
 })
 
-export class TicketDetailComponent {
+export class TicketDetailComponent implements OnInit {
   ticket: Ticket;
   comments: Comment[];
   error: any;
@@ -33,8 +33,11 @@ export class TicketDetailComponent {
     this.ticket = this.dataTransfer._getDataHandler();
   }
 
+  ngOnInit() {
+  }
+
   refresh(): void {
-    window.location.reload();
+    location.reload();
   }
 
   getComments(): void {

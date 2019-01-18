@@ -8,7 +8,12 @@
 }
 
 .drawer-container {
+  height: 25%;
   width: 100%;
+}
+
+.table-container {
+  padding: 4px;
 }
 
 .sidenav-toggler {
