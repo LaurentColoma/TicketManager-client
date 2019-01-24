@@ -1,18 +1,24 @@
 import {Injectable} from '@angular/core';
 import { Http, Headers, RequestOptions } from '@angular/http';
+import * as Global from '../global';
 
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/map';
 
 @Injectable()
 export class SprintService {
-  private apiUrl = 'http://0.0.0.0:8000/sprint';
+  private apiUrl: string;
 
-  constructor(private http: Http) {}
+  constructor(private http: Http) {
+    if (!Global.PROD) {
+      this.apiUrl = 'http://0.0.0.0:8000/';
+    } else {
+      this.apiUrl = 'http://tracker.inspyration.org/rest/';
+    }
+  }
 
   getSprints() {
-    const url = `${this.apiUrl}/?format=json`;
-    return this.http.get(url, this.jwt())
+    return this.http.get(`${this.apiUrl}/?format=json`, this.jwt())
       .toPromise()
       .then(response => response.json())
       .catch(this.handleError);

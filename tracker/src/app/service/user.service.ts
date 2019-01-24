@@ -4,37 +4,46 @@ import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import { User} from '../data/user';
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/map';
+import * as Global from '../global';
 
 @Injectable()
 export class UserService {
-    constructor(private http: Http) { }
+  private apiUrl: string;
+
+    constructor(private http: Http) {
+      if (!Global.PROD) {
+        this.apiUrl = 'http://0.0.0.0:8000/';
+      } else {
+        this.apiUrl = 'http://tracker.inspyration.org/rest/';
+      }
+    }
 
     getAll() {
-      return this.http.get('http://0.0.0.0:8000/users/?format=json', this.jwt())
+      return this.http.get(`${this.apiUrl}users/?format=json`, this.jwt())
         .toPromise()
         .then(response => response.json())
         .catch(this.handleError);
     }
 
     getById(id: number) {
-      return this.http.get('http://0.0.0.0:8000/users/?format=json' + id, this.jwt())
+      return this.http.get(`${this.apiUrl}users/?format=json` + id, this.jwt())
         .toPromise()
         .then(response => response.json())
         .catch(this.handleError);
     }
 
     create(user: User) {
-        return this.http.post('http://0.0.0.0:8000/users/', user, this.jwt())
+        return this.http.post(`${this.apiUrl}users/?format=json`, user, this.jwt())
           .map((response: Response) => response.json());
     }
 
     update(user: User) {
-        return this.http.put('http://0.0.0.0:8000/users/' + user.id, user, this.jwt())
+        return this.http.put(`${this.apiUrl}users/?format=json` + user.id, user, this.jwt())
           .map((response: Response) => response.json());
     }
 
     delete(id: number) {
-        return this.http.delete('http://0.0.0.0:8000/users/' + id, this.jwt())
+        return this.http.delete(`${this.apiUrl}users/?format=json` + id, this.jwt())
           .map((response: Response) => response.json());
     }
 

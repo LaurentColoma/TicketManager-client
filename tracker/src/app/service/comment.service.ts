@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import { Http, Headers, RequestOptions } from '@angular/http';
 import {Observable} from 'rxjs/Observable';
+import * as Global from '../global';
 
 import { Comment } from '../data/comment';
 
@@ -9,14 +10,18 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class CommentService {
-  private apiUrl = 'http://0.0.0.0:8000/comment/';
+  private apiUrl: string;
 
   constructor(private http: Http) {
+    if (!Global.PROD) {
+      this.apiUrl = 'http://0.0.0.0:8000/';
+    } else {
+      this.apiUrl = 'http://tracker.inspyration.org/rest/';
+    }
   }
 
   getComment() {
-    const url = `${this.apiUrl}`;
-    return this.http.get(url, this.jwt())
+    return this.http.get(this.apiUrl, this.jwt())
       .toPromise()
       .then(response => response.json())
       .catch(this.handleError);

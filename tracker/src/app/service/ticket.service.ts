@@ -9,15 +9,22 @@ import 'rxjs/add/operator/catch';
 
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable } from 'rxjs';
+import * as Global from '../global';
 
 @Injectable()
 export class TicketService {
-  private apiUrl = 'http://0.0.0.0:8000/tickets';
+  private apiUrl: string;
 
-  constructor(private http: Http, private _http: HttpClient) { }
+  constructor(private http: Http, private _http: HttpClient) {
+    if (!Global.PROD) {
+      this.apiUrl = 'http://0.0.0.0:8000/';
+    } else {
+      this.apiUrl = 'http://tracker.inspyration.org/rest/';
+    }
+  }
 
   getAllTicket(): Observable<Array<Ticket>> {
-    return this._http.get<Array<Ticket>>(`${this.apiUrl}/?format=json`)
+    return this._http.get<Array<Ticket>>(`${this.apiUrl}tickets/?format=json`)
   }
 
   getPlaned() {
@@ -44,12 +51,12 @@ export class TicketService {
   }
 
   createTicket(ticket: Ticket) {
-    return this.http.post('http://0.0.0.0:8000/tickets/', ticket, this.jwt())
+    return this.http.post(`${this.apiUrl}tickets/`, ticket, this.jwt())
           .map(response => response.json());
   }
 
   updateTicket(ticket: Ticket) {
-    return this.http.put('http://0.0.0.0:8000/tickets/' + ticket.id + '/', ticket, this.jwt())
+    return this.http.put(`${this.apiUrl}tickets/` + ticket.id + '/', ticket, this.jwt())
           .map(response => response.json());
   }
 
