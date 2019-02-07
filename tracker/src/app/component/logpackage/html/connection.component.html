@@ -4,10 +4,10 @@
         <div class="signIn jumbotron">
             <div class="header">
                 <div class="title">
-                    {{ title }}
+                    {{title}}
                 </div>
             </div>
-            <br />
+            <div class="space"></div>
             <form class="auth-form" name="form" (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate>
                 <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
                     <input class="username-input form-control form-control-lg" placeholder="Username" type="text" name="username"
@@ -33,7 +33,7 @@
                 </div>
             </form>
             <div class="footer">
-                <a href='http://www.inspyration.fr/'>InsPyration 2018</a>
+                <a href='http://www.inspyration.fr/' target="_blank">InsPyration 2018</a>
             </div>
         </div>
     </div>

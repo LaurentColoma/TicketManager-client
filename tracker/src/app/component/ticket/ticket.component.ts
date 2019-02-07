@@ -33,7 +33,7 @@ export class TicketComponent {
   }
 
   logout() {
-      localStorage.removeItem('currentUser');
-      this.router.navigate(['/connection'])
+      localStorage.removeItem('userData');
+      this.router.navigate(['/authentication'])
   }
 }

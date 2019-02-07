@@ -40,9 +40,12 @@ import { UserService } from './service/user.service';
 import { SprintService } from './service/sprint.service';
 import { CommentService } from './service/comment.service';
 import { DataTransferService } from "./service/dataTransfer.service";
+import { AuthGuard } from './service/authGuard';
 
 // Routing
 import { Routing } from './app.routing';
+
+import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
 
 @NgModule({
   declarations: [
@@ -79,6 +82,13 @@ import { Routing } from './app.routing';
     DndModule.forRoot(),
     BrowserAnimationsModule,
     MaterialModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: function tokenGetter() {
+          return localStorage.getItem('token');
+        }
+      }
+    }),
   ],
   providers: [
     TicketService,
@@ -89,6 +99,7 @@ import { Routing } from './app.routing';
     SprintService,
     CommentService,
     DataTransferService,
+    AuthGuard,
   ],
   bootstrap: [AppComponent]
 })

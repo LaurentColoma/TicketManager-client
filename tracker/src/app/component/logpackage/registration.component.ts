@@ -12,7 +12,7 @@ import { UserService} from '../../service/user.service';
 
 export class RegistrationComponent {
 
-  title = 'registration';
+  title = '';
   model: any = {};
   loading = false;
 
@@ -27,7 +27,7 @@ export class RegistrationComponent {
           .subscribe(
               data => {
                   this.alertService.success('Registration successful', true);
-                  this.router.navigate(['/connection']);
+                  this.router.navigate(['/authentication']);
               },
               error => {
                   this.alertService.error(error);

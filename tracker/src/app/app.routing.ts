@@ -1,4 +1,4 @@
-import { Routes, RouterModule } from '@angular/router';
+import { Routes, RouterModule, CanActivate} from '@angular/router';
 
 // Main App: Ticket
 import { TicketComponent } from "./component/ticket/ticket.component";
@@ -19,50 +19,63 @@ import { ProfileComponent } from './component/profile/profile.component';
 import { ConnectionComponent } from "./component/logpackage/connection.component";
 import { RegistrationComponent } from "./component/logpackage/registration.component";
 
+import { HttpClientModule } from '@angular/common/http';
+import { HttpModule } from '@angular/http';
+import {AuthGuard} from "./service/authGuard";
+
 const appRoutes: Routes = [
   {
         path: '',
-        redirectTo: '/connection',
+        redirectTo: '/authentication',
         pathMatch: 'full'
       },
       {
         path: 'ticket',
         component: TicketComponent,
+        canActivate: [AuthGuard],
       },
       {
         path: 'details',
         component: TicketDetailComponent,
+        canActivate: [AuthGuard],
       },
       {
         path: 'creation',
         component: CreatingComponent,
+        canActivate: [AuthGuard],
       },
       {
         path: 'qualification',
         component: QualificationComponent,
+        canActivate: [AuthGuard],
       },
       {
         path: 'planification',
         component: PlanificationComponent,
+        canActivate: [AuthGuard],
       },
       {
         path: 'development',
         component: DevelopmentComponent,
+        canActivate: [AuthGuard],
       },
       {
         path: 'testing',
         component: TestingComponent,
+        canActivate: [AuthGuard],
       },
       {
         path: 'validate',
         component: ValidationComponent,
+        canActivate: [AuthGuard],
       },
       {
         path: 'profile',
         component: ProfileComponent,
+        canActivate: [AuthGuard],
       },
       {
-        path: 'connection',
+        path: 'authentication',
         component: ConnectionComponent,
       },
       {

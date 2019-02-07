@@ -3,37 +3,45 @@
     <div id="signUp" class="container">
         <div class="signUp jumbotron"> 
             <div class="header">
-                <h1>{{ title }}</h1>
+                <div class="title">
+                    {{title}}
+                </div>
             </div>
+            <div class="space"></div>
             <form class="signUp-form" name="form" (ngSubmit)="f.form.valid && register()" #f="ngForm" novalidate>
                 <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
-                    <input class="username-input form-control form-control-lg" placeholder="username"
+                    <input class="username-input form-control form-control-lg" placeholder="Username"
                            type="text" name="username" [(ngModel)]="model.username"
                            #username="ngModel" required />
                     <div *ngIf="f.submitted && !username.valid" class="help-block">
                         Username is required</div>
                 </div>
                 <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
-                    <input class="password-input form-control form-control-lg" placeholder="password"
+                    <input class="password-input form-control form-control-lg" placeholder="Password"
                            type="password" name="password" [(ngModel)]="model.password"
                            #password="ngModel" required />
                     <div *ngIf="f.submitted && !password.valid" class="help-block">
                         Password is required</div>
                 </div>
                 <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !email.valid }">
-                    <input class="email-input form-control form-control-lg" placeholder="email"
+                    <input class="email-input form-control form-control-lg" placeholder="Email"
                            type="email" name="email" [(ngModel)]="model.email"
                            #email="ngModel" required />
                     <div *ngIf="f.submitted && !email.valid" class="help-block">
                         Email is required</div>
                 </div>
-                <div class="form-group">
-                    <button [disabled]="loading" class="btn btn-lg">Sign Up</button>
-                </div>
-                <div class="container-fluid">
-                    <button routerLink="/connection" class=" btn btn-lg">Sign In</button>
+                <div class="button-group form-group">
+                    <div class="signUp-input">
+                        <button [disabled]="loading" class="btn-signUp">Sign Up</button>
+                    </div>
+                    <div class="back-input">
+                        <button routerLink='/authentication' class="btn-back">Back</button>
+                    </div>
                 </div>
             </form>
+            <div class="footer">
+                <a href='http://www.inspyration.fr/' target="_blank">InsPyration 2018</a>
+            </div>
         </div>
     </div>
 </div>
