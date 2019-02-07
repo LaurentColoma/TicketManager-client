@@ -12,7 +12,7 @@ import { AuthenticationService } from '../../service/authentication.service';
 
 export class ConnectionComponent implements OnInit {
 
-  name = 'Login';
+  title = 'Get Started with Tracker!';
   model: any = {};
   loading = false;
 

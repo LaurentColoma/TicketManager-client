@@ -5,9 +5,10 @@ html {
 }
 
 body {
-  background-color: #eeeeee;
+  background-color: #00447B;
   margin: 0 0 100px;
   padding: 25px;
+  overflow: hidden;
 }
 
 footer {
@@ -26,16 +27,6 @@ h1 {
   font-size: 250%;
   vertical-align:middle;
   display:table-cell;
-}
-
-button {
-  border-radius: 100px 100px 100px 100px;
-  font-face: 'Comic Sans MS';
-  font-size: larger;
-  color: white;
-  background-color: #8d6e63;
-  border: 3pt ridge lightgrey;
-  cursor: pointer;
 }
 
 html, body { height: 100%; }

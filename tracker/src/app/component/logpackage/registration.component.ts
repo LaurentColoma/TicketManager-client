@@ -12,7 +12,7 @@ import { UserService} from '../../service/user.service';
 
 export class RegistrationComponent {
 
-  name = 'registration';
+  title = 'registration';
   model: any = {};
   loading = false;
 

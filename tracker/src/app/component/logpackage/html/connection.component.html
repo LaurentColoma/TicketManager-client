@@ -1,31 +1,40 @@
-<div class="container-fluid">
-    <div class="firstj jumbotron">
-        <h1>{{ name }}</h1>
-    </div>
-</div>
-<alert></alert>
-<div id="login" class="container" style="display:flex;justify-content:center;align-items:center;">
-    <div class="login jumbotron">
-            <form name="form" (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate>
+<div class="main-container">
+    <alert></alert>
+    <div id="signIn" class="container">
+        <div class="signIn jumbotron">
+            <div class="header">
+                <div class="title">
+                    {{ title }}
+                </div>
+            </div>
+            <br />
+            <form class="auth-form" name="form" (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate>
                 <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
-                    <input class="form-control form-control-lg" placeholder="username" type="text" name="username"
+                    <input class="username-input form-control form-control-lg" placeholder="Username" type="text" name="username"
                            id="username" [(ngModel)]="model.username" #username="ngModel" required />
                     <div *ngIf="f.submitted && !username.valid" class="help-block">Username is required</div>
                 </div>
                 <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
-                    <input class="form-control form-control-lg" placeholder="password" type="password" name="password"
+                    <input class="password-input form-control form-control-lg" placeholder="Password" type="password" name="password"
                            id="password" [(ngModel)]="model.password" #password="ngModel" required />
                     <div *ngIf="f.submitted && !password.valid" class="help-block">Password is required</div>
                 </div>
-                <div class="form-group">
-                    <button [disabled]="loading" class="login-input btn btn-lg">Login</button>
-                    <button routerLink="/registration" class="btn btn-lg">Register</button>
+                <div class="button-group form-group">
+                    <div class="login-input">
+                        <button [disabled]="loading" class="btn-input">Sign In</button>
+                    </div>
+                    <div class="space"></div>
+                    <div class="need-account">
+                        Not a member yet?
+                    </div>
+                    <div class="registration-input">
+                        <button routerLink="/registration" class="btn-registration">Sign Up</button>
+                    </div>
                 </div>
             </form>
+            <div class="footer">
+                <a href='http://www.inspyration.fr/'>InsPyration 2018</a>
+            </div>
+        </div>
     </div>
 </div>
-<div class="container-fluid">
-    <footer >
-    </footer>
-</div>
-
