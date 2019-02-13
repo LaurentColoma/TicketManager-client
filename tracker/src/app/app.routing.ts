@@ -19,8 +19,6 @@ import { ProfileComponent } from './component/profile/profile.component';
 import { ConnectionComponent } from "./component/logpackage/connection.component";
 import { RegistrationComponent } from "./component/logpackage/registration.component";
 
-import { HttpClientModule } from '@angular/common/http';
-import { HttpModule } from '@angular/http';
 import {AuthGuard} from "./service/authGuard";
 
 const appRoutes: Routes = [

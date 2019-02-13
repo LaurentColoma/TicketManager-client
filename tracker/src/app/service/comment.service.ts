@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
-import { Http, Headers, RequestOptions } from '@angular/http';
-import {Observable} from 'rxjs/Observable';
+import { Http} from '@angular/http';
+import {Headers, RequestOptions} from '@angular/http';
 import * as Global from '../global';
 
 import { Comment } from '../data/comment';
@@ -20,7 +20,7 @@ export class CommentService {
     }
   }
 
-  getComment() {
+  /*getComment() {
     return this.http.get(this.apiUrl, this.jwt())
       .toPromise()
       .then(response => response.json())
@@ -30,7 +30,7 @@ export class CommentService {
   createComment(comment: Comment) {
     return this.http.post(this.apiUrl, comment)
       .map(response => response.json());
-  }
+  }*/
 
   private handleError(error: any) {
     console.error('An error occurred', error);

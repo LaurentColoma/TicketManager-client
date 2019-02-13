@@ -1,6 +1,4 @@
 import { Injectable } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
-import { HttpModule } from '@angular/http';
 import { Router, CanActivate } from '@angular/router';
 import { AuthenticationService } from './authentication.service';
 
@@ -10,9 +8,12 @@ export class AuthGuard implements CanActivate {
 
   canActivate() {
       if (localStorage.getItem('userData')) {
-          if(!this.auth.isAuthenticated())
+          if(!this.auth.isAuthenticated()) {
+            this.router.navigate(['/authentication'])
             return false;
+          }
           return true;
       }
       return false;
+  }
 }

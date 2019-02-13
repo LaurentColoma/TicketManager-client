@@ -1,37 +1,41 @@
-<div class="container-fluid">
-  <div class="container">
-    <mat-drawer-container class="drawer-container" autosize>
-      <mat-drawer #drawer class="sidenav" mode="side">
-        <task></task>
-      </mat-drawer>
-
-      <div #menu class="sidenav-toggler">
-        <button type="button" mat-button (click)="drawer.toggle()">Menu</button>
-        <button type="button" mat-button (click)="logout()">Log Out</button>
+<div class="main-container">
+  <alert></alert>
+  <div id="ticket-list" class="container">
+    <div class="ticket-list jumbotron">
+      <div class="header">
+        <div class="title">
+          {{title}}
+        </div>
       </div>
-    
-    <div class="table-container">
-      <table class="table table-bordered table-condensed">
-        <thead style="background-color: #0097a7">
-        <tr>
-          <td>Label</td>
-          <td>Application</td>
-          <td>Module</td>
-          <td>Status</td>
-        </tr>
-        </thead>
-        <tbody>
-        <tr *ngFor="let ticket of ticketCollection"
-            [class.selected]="ticket === selectedTicket"
-            (click)="onSelect(ticket)">
-          <td>{{ ticket.label }}</td>
-          <td>{{ ticket.application }} {{ ticket.version_affected_set }}</td>
-          <td>{{ ticket.module_set }}</td>
-          <td>{{ ticket.status }}</td>
-        </tr>
-        </tbody>
-      </table>
+      <div #toggler class="sidenav-toggler">
+        <button class="menu-button" type="button" (click)="toggle()">Menu</button>
+      </div>
+      <div class="space"></div>
+      <div #drawer id="sidenav" class="sidenav">
+        <task></task>
+      </div>
+      <div class="list">
+          <table class="table">
+            <thead class="table-header">
+              <tr class="table-column-title">
+                <td><p>Label</p></td>
+                <td><p>Application</p></td>
+                <td><p>Module</p></td>
+                <td><p>Status</p></td>
+              </tr>
+            </thead>
+            <tbody class="table-body">
+              <tr class="table-column-content" *ngFor="let ticket of ticketCollection"
+                [class.selected]="ticket === selectedTicket"
+                (click)="onSelect(ticket)">
+                <td><p>{{ ticket.label }}</p></td>
+                <td><p>{{ ticket.application }} {{ ticket.version_affected_set }}</p></td>
+                <td><p>{{ ticket.module_set }}</p></td>
+                <td><p>{{ ticket.status }}</p></td>
+              </tr>
+            </tbody>
+          </table>
+      </div>
     </div>
-  </mat-drawer-container>
   </div>
 </div>

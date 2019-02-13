@@ -1,5 +1,82 @@
-.taskbar {
+.home-button {
   display:flex;
-  justify-content:center;
-  align-items:center;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: row;
+}
+.creation-input {
+    border-radius: 5%;
+    border-color: transparent;
+    background-color: #00447B;
+    color: white;
+}
+
+.creation-input:hover {
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+.qualification-input {
+  border-radius: 5%;
+  border-color: transparent;
+  background-color: #00447B;
+  color: white;
+}
+
+.qualification-input:hover {
+box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+.planification-input {
+  border-radius: 5%;
+  border-color: transparent;
+  background-color: #00447B;
+  color: white;
+}
+
+.planification-input:hover {
+box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+.development-input {
+  border-radius: 5%;
+  border-color: transparent;
+  background-color: #00447B;
+  color: white;
+}
+
+.development-input:hover {
+box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+.testing-input {
+  border-radius: 5%;
+  border-color: transparent;
+  background-color: #00447B;
+  color: white;
+}
+
+.testing-input:hover {
+box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+.validate-input {
+  border-radius: 5%;
+  border-color: transparent;
+  background-color: #00447B;
+  color: white;
+}
+
+.validate-input:hover {
+box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+.signOut-input {
+  border-radius: 5%;
+  border-color: transparent;
+  background-color: #00447B;
+  color: white;
+}
+
+.signOut-input:hover {
+box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 }

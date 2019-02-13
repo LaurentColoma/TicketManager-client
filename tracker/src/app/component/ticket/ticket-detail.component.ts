@@ -21,7 +21,7 @@ export class TicketDetailComponent implements OnInit {
   comments: Comment[];
   error: any;
   model: any = {};
-  name = 'Ticket\'s Detail';
+  title = 'Details of';
   dateCreation: string;
 
   constructor(
@@ -40,7 +40,7 @@ export class TicketDetailComponent implements OnInit {
     location.reload();
   }
 
-  getComments(): void {
+  /*getComments(): void {
     this.commentService
         .getComment()
         .then(comments => this.comments = comments);
@@ -56,5 +56,5 @@ export class TicketDetailComponent implements OnInit {
         error => {
           this.alertService.error(error);
         });
-  }
+  }*/
 }

@@ -1,14 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
 html {
     position: relative;
+    height: 100%;
     min-height: 100%;
 }
 
 body {
   background-color: #00447B;
-  margin: 0 0 100px;
   padding: 25px;
-  overflow: hidden;
+  overflow: scroll;
+  margin: 0; font-family: "Roboto", "Helvetica Neue", sans-serif;
 }
 
 footer {
@@ -28,6 +29,3 @@ h1 {
   vertical-align:middle;
   display:table-cell;
 }
-
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

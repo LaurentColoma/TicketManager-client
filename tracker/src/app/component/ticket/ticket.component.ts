@@ -1,8 +1,8 @@
-import { Component} from '@angular/core';
-import { Router} from '@angular/router';
+import {Component} from '@angular/core';
+import {Router} from '@angular/router';
 
-import { Ticket} from '../../data/tickets';
-import { TicketService} from '../../service/ticket.service';
+import {Ticket} from '../../data/tickets';
+import {TicketService} from '../../service/ticket.service';
 import {DataTransferService} from "../../service/dataTransfer.service";
 
 @Component({
@@ -16,7 +16,8 @@ export class TicketComponent {
   ticketCollection: Ticket[];
   responsible: any;
   error: any;
-  name = 'Ticket\'s List';
+  toggler: boolean = false;
+  title = 'Tracker';
 
   constructor(
     private ticketService: TicketService,
@@ -32,8 +33,13 @@ export class TicketComponent {
     this.router.navigate(['/details'])
   }
 
-  logout() {
-      localStorage.removeItem('userData');
-      this.router.navigate(['/authentication'])
+  toggle() {
+    if (this.toggler === false) {
+      document.getElementById('sidenav').style.display = "block";
+      this.toggler = true;
+    } else {
+      document.getElementById('sidenav').style.display = "none";
+      this.toggler = false;
+    }
   }
 }

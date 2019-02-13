@@ -16,7 +16,7 @@ import { Module } from '../../data/module';
 
 export class CreatingComponent {
 
-  name = 'Creating\'s Ticket';
+  title = 'Creation';
   model: any = {};
   modules: Module;
   applications: Application;

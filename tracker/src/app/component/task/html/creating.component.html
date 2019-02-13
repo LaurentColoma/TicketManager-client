@@ -1,138 +1,165 @@
-<alert></alert>
-<div class="container">
+<div class="main-container">
+    <alert></alert>
     <home></home>
-<hr />
-<mat-form-field>
-  <mat-select placeholder="Select a Ticket model..." [(ngModel)]="selectedValue">
-    <mat-option value="1">Technique</mat-option>
-    <mat-option value="2">Fonctionnel</mat-option>
-    <mat-option value="3">Réglementaire</mat-option>
-  </mat-select>
-</mat-form-field>
-</div>
-<br/>
-<div class="form-container">
-    <div class="technical-form" *ngIf="selectedValue === '1'">
-        <h3>Ticket Technique</h3>
-        <form name="form" (ngSubmit)="f.form.valid && create()" #f="ngForm" novalidate>
-            <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !label.valid }">
-                <input class="form-control form-control-lg" placeholder="Label" type="text" name="label"
-                       [(ngModel)]="model.label" #label="ngModel" required />
-                <div *ngIf="f.submitted && !label.valid" class="help-block">Label is required</div>
+    <div id="select-form" class="container">
+        <div class="select-form jumbotron">
+            <div class="header">
+                <div class="title">
+                    {{title}}
+                </div>
             </div>
-            <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !application.valid }">
-                <select class="form-control form-control-lg"
-                       name="application" [(ngModel)]="model.application"
-                       #application="ngModel" required>
-                    <option *ngFor="let application of applications">{{ application.label }}</option>
-                </select>
-                <div *ngIf="f.submitted && !application.valid" class="help-block">
-                    Application is required</div>
+            <div class="select-type">
+                <mat-form-field>
+                    <mat-select placeholder="Select a Ticket model..." [(ngModel)]="selectedValue">
+                        <mat-option value="1">Technique</mat-option>
+                        <mat-option value="2">Fonctionnel</mat-option>
+                        <mat-option value="3">Réglementaire</mat-option>
+                    </mat-select>
+                </mat-form-field>
             </div>
-            <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !module_set.valid }">
-                <select class="form-control form-control-lg"
-                       name="module_set" [(ngModel)]="model.module_set"
-                       #module_set="ngModel" required multiple>
-                    <option *ngFor="let module of modules">{{ module.label }}</option>
-                </select>
-                <small class="form-text text-muted">you can select multiple options by holding "CTRL" and clicking</small>
-                <div *ngIf="f.submitted && !module_set.valid" class="help-block">
-                    Module is required </div>
+        </div>
+        <div id="creation-form" class="container">
+            <div class="technical-form" *ngIf="selectedValue === '1'">
+                <h3>Ticket Technique</h3>
+                <form name="form" (ngSubmit)="f.form.valid && create()" #f="ngForm" novalidate>
+                    <div class="label-input form-group" [ngClass]="{ 'has-error': f.submitted && !label.valid }">
+                        <input class="form-control form-control-lg" placeholder="Label" type="text" name="label"
+                               [(ngModel)]="model.label" #label="ngModel" required />
+                        <div *ngIf="f.submitted && !label.valid" class="help-block">Label is required</div>
+                    </div>
+                    <table class="module">
+                        <tbody>
+                            <td>
+                                <div class="application-select form-group" [ngClass]="{ 'has-error': f.submitted && !application.valid }">
+                                    <select class="form-control form-control-lg"
+                                           name="application" [(ngModel)]="model.application"
+                                           #application="ngModel" required>
+                                        <option *ngFor="let application of applications">{{ application.label }}</option>
+                                    </select>
+                                    <div *ngIf="f.submitted && !application.valid" class="help-block">
+                                        Application is required</div>
+                                </div>
+                                <div class="module-select form-group" [ngClass]="{ 'has-error': f.submitted && !module_set.valid }">
+                                    <select class="form-control form-control-lg"
+                                           name="module_set" [(ngModel)]="model.module_set"
+                                           #module_set="ngModel" required multiple>
+                                        <option *ngFor="let module of modules">{{ module.label }}</option>
+                                    </select>
+                                    <small class="form-text text-muted">you can select multiple options by holding "CTRL" and clicking</small>
+                                    <div *ngIf="f.submitted && !module_set.valid" class="help-block">
+                                        Module is required </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="description-input form-group" [ngClass]="{ 'has-error': f.submitted && !description.valid }">
+                                    <textarea class="form-control form-control-lg" placeholder="Description" type="text" name="description"
+                                              [(ngModel)]="model.description" #description="ngModel" required>
+                                    </textarea>
+                                    <small id="DescriptionHelp" class="form-text text-muted">Do yourself a favour : be as exhaustive as you can !</small>
+                                    <div *ngIf="f.submitted && !description.valid" class="help-block">Description is required</div>
+                                </div>
+                            </td>
+                        </tbody>
+                    </table>
+                    <div class="create-input form-group">
+                        <button class="button" [disabled]="loading">Create</button>
+                    </div>
+                </form>
             </div>
-            <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !description.valid }">
-                <textarea class="form-control form-control-lg" placeholder="Description" type="text" name="description"
-                          [(ngModel)]="model.description" #description="ngModel" required>
-                </textarea>
-                <small id="DescriptionHelp" class="form-text text-muted">Do yourself a favour : be as exhaustive as you can !</small>
-                <div *ngIf="f.submitted && !description.valid" class="help-block">Description is required</div>
+            <div class="fonctionnal-form" *ngIf="selectedValue === '2'">
+                <h3>Ticket Fonctionnel</h3>
+                <form name="form" (ngSubmit)="f.form.valid && create()" #f="ngForm" novalidate>
+                    <div class="label-input form-group" [ngClass]="{ 'has-error': f.submitted && !label.valid }">
+                        <input class="form-control form-control-lg" placeholder="Label" type="text" name="label"
+                               [(ngModel)]="model.label" #label="ngModel" required />
+                        <div *ngIf="f.submitted && !label.valid" class="help-block">Label is required</div>
+                    </div>
+                    <table class="module">
+                        <tbody>
+                            <td>
+                                <div class="application-select form-group" [ngClass]="{ 'has-error': f.submitted && !application.valid }">
+                                    <select class="form-control form-control-lg"
+                                           name="application" [(ngModel)]="model.application"
+                                           #application="ngModel" required>
+                                        <option *ngFor="let application of applications">{{ application.label }}</option>
+                                    </select>
+                                    <div *ngIf="f.submitted && !application.valid" class="help-block">
+                                        Application is required</div>
+                                </div>
+                                <div class="module-select form-group" [ngClass]="{ 'has-error': f.submitted && !module_set.valid }">
+                                    <select class="form-control form-control-lg"
+                                           name="module_set" [(ngModel)]="model.module_set"
+                                           #module_set="ngModel" required multiple>
+                                        <option *ngFor="let module of modules">{{ module.label }}</option>
+                                    </select>
+                                    <small class="form-text text-muted">you can select multiple options by holding "CTRL" and clicking</small>
+                                    <div *ngIf="f.submitted && !module_set.valid" class="help-block">
+                                        Module is required </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="description-input form-group" [ngClass]="{ 'has-error': f.submitted && !description.valid }">
+                                    <textarea class="form-control form-control-lg" placeholder="Description" type="text" name="description"
+                                              [(ngModel)]="model.description" #description="ngModel" required>
+                                    </textarea>
+                                    <small id="DescriptionHelp" class="form-text text-muted">Do yourself a favour : be as exhaustive as you can !</small>
+                                    <div *ngIf="f.submitted && !description.valid" class="help-block">Description is required</div>
+                                </div>
+                            </td>
+                        </tbody>
+                    </table>
+                    <div class="create-input form-group">
+                        <button class="button" [disabled]="loading">Create</button>
+                    </div>
+                </form>
             </div>
-            <div class="form-group">
-                <button  [disabled]="loading" mat-raised-button [color]="'create'">Create</button>
+            <div class="reglementary-form" *ngIf="selectedValue === '3'">
+                <h3>Ticket Réglementaire</h3>
+                <form name="form" (ngSubmit)="f.form.valid && create()" #f="ngForm" novalidate>
+                    <div class="label-input form-group" [ngClass]="{ 'has-error': f.submitted && !label.valid }">
+                        <input class="form-control form-control-lg" placeholder="Label" type="text" name="label"
+                               [(ngModel)]="model.label" #label="ngModel" required />
+                        <div *ngIf="f.submitted && !label.valid" class="help-block">Label is required</div>
+                    </div>
+                    <table class="module">
+                        <tbody>
+                            <td>
+                                <div class="application-select form-group" [ngClass]="{ 'has-error': f.submitted && !application.valid }">
+                                    <select class="form-control form-control-lg"
+                                           name="application" [(ngModel)]="model.application"
+                                           #application="ngModel" required>
+                                        <option *ngFor="let application of applications">{{ application.label }}</option>
+                                    </select>
+                                    <div *ngIf="f.submitted && !application.valid" class="help-block">
+                                        Application is required</div>
+                                </div>
+                                <div class="module-select form-group" [ngClass]="{ 'has-error': f.submitted && !module_set.valid }">
+                                    <select class="form-control form-control-lg"
+                                           name="module_set" [(ngModel)]="model.module_set"
+                                           #module_set="ngModel" required multiple>
+                                        <option *ngFor="let module of modules">{{ module.label }}</option>
+                                    </select>
+                                    <small class="form-text text-muted">you can select multiple options by holding "CTRL" and clicking</small>
+                                    <div *ngIf="f.submitted && !module_set.valid" class="help-block">
+                                        Module is required </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="description-input form-group" [ngClass]="{ 'has-error': f.submitted && !description.valid }">
+                                    <textarea class="form-control form-control-lg" placeholder="Description" type="text" name="description"
+                                              [(ngModel)]="model.description" #description="ngModel" required>
+                                    </textarea>
+                                    <small id="DescriptionHelp" class="form-text text-muted">Do yourself a favour : be as exhaustive as you can !</small>
+                                    <div *ngIf="f.submitted && !description.valid" class="help-block">Description is required</div>
+                                </div>
+                            </td>
+                        </tbody>
+                    </table>
+                    <div class="create-input form-group">
+                        <button class="button" [disabled]="loading">Create</button>
+                    </div>
+                </form>
             </div>
-        </form>
+        </div>
     </div>
-    <div class="fonctionnal-form" *ngIf="selectedValue === '2'">
-        <h3>Ticket Fonctionnel</h3>
-        <form name="form" (ngSubmit)="f.form.valid && create()" #f="ngForm" novalidate>
-            <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !label.valid }">
-                <input class="form-control form-control-lg" placeholder="Label" type="text" name="label"
-                       [(ngModel)]="model.label" #label="ngModel" required />
-                <div *ngIf="f.submitted && !label.valid" class="help-block">Label is required</div>
-            </div>
-            <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !application.valid }">
-                <select class="form-control form-control-lg"
-                       name="application" [(ngModel)]="model.application"
-                       #application="ngModel" required>
-                    <option *ngFor="let application of applications">{{ application.label }}</option>
-                </select>
-                <div *ngIf="f.submitted && !application.valid" class="help-block">
-                    Application is required</div>
-            </div>
-            <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !module_set.valid }">
-                <select class="form-control form-control-lg"
-                       name="module_set" [(ngModel)]="model.module_set"
-                       #module_set="ngModel" required multiple>
-                    <option *ngFor="let module of modules">{{ module.label }}</option>
-                </select>
-                <small class="form-text text-muted">you can select multiple options by holding "CTRL" and clicking</small>
-                <div *ngIf="f.submitted && !module_set.valid" class="help-block">
-                    Module is required </div>
-            </div>
-            <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !description.valid }">
-                <textarea class="form-control form-control-lg" placeholder="Description" type="text" name="description"
-                          [(ngModel)]="model.description" #description="ngModel" required>
-                </textarea>
-                <small id="DescriptionHelp" class="form-text text-muted">Do yourself a favour : be as exhaustive as you can !</small>
-                <div *ngIf="f.submitted && !description.valid" class="help-block">Description is required</div>
-            </div>
-            <div class="form-group">
-                <button  [disabled]="loading" mat-raised-button [color]="'create'">Create</button>
-            </div>
-        </form>
-    </div>
-    <div class="reglementary-form" *ngIf="selectedValue === '3'">
-        <h3>Ticket Réglementaire</h3>
-        <form name="form" (ngSubmit)="f.form.valid && create()" #f="ngForm" novalidate>
-            <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !label.valid }">
-                <input class="form-control form-control-lg" placeholder="Label" type="text" name="label"
-                       [(ngModel)]="model.label" #label="ngModel" required />
-                <div *ngIf="f.submitted && !label.valid" class="help-block">Label is required</div>
-            </div>
-            <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !application.valid }">
-                <select class="form-control form-control-lg"
-                       name="application" [(ngModel)]="model.application"
-                       #application="ngModel" required>
-                    <option *ngFor="let application of applications">{{ application.label }}</option>
-                </select>
-                <div *ngIf="f.submitted && !application.valid" class="help-block">
-                    Application is required</div>
-            </div>
-            <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !module_set.valid }">
-                <select class="form-control form-control-lg"
-                       name="module_set" [(ngModel)]="model.module_set"
-                       #module_set="ngModel" required multiple>
-                    <option *ngFor="let module of modules">{{ module.label }}</option>
-                </select>
-                <small class="form-text text-muted">you can select multiple options by holding "CTRL" and clicking</small>
-                <div *ngIf="f.submitted && !module_set.valid" class="help-block">
-                    Module is required </div>
-            </div>
-            <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !description.valid }">
-                <textarea class="form-control form-control-lg" placeholder="Description" type="text" name="description"
-                          [(ngModel)]="model.description" #description="ngModel" required>
-                </textarea>
-                <small id="DescriptionHelp" class="form-text text-muted">Do yourself a favour : be as exhaustive as you can !</small>
-                <div *ngIf="f.submitted && !description.valid" class="help-block">Description is required</div>
-            </div>
-            <div class="form-group">
-                <button  [disabled]="loading" mat-raised-button [color]="'create'">Create</button>
-            </div>
-        </form>
-    </div>
 </div>
-<!--
-<div class="container-fluid">
-    <footer >
-    </footer>
-</div>
--->
