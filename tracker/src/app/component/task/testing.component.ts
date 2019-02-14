@@ -17,7 +17,7 @@ import 'rxjs/add/operator/map';
 export class TestingComponent {
 
   draggedTicket: Ticket;
-  name = 'Ticket\'s Testing';
+  title = 'Testing';
   protected ticketCollection: Ticket[];
   dragOperation: boolean = false;
   containers: Array<Container>;

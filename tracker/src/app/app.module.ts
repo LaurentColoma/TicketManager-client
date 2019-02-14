@@ -48,6 +48,10 @@ import { Routing } from './app.routing';
 
 import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
 
+export function jwtTokenGetter() {
+  return localStorage.getItem('token');
+}
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -86,9 +90,7 @@ import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
     DragDropModule,
     JwtModule.forRoot({
       config: {
-        tokenGetter: function tokenGetter() {
-          return localStorage.getItem('token');
-        }
+        tokenGetter: jwtTokenGetter
       }
     }),
   ],

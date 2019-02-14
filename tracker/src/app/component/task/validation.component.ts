@@ -17,7 +17,7 @@ import 'rxjs/add/operator/map';
 export class ValidationComponent implements OnInit{
 
   draggedTicket: Ticket;
-  name = 'Ticket\'s Validation';
+  title = 'Validation';
   protected ticketCollection: Ticket[];
   dragOperation: boolean = false;
   containers: Array<Container>;

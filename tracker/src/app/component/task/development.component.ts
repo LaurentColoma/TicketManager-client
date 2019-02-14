@@ -21,7 +21,7 @@ export class DevelopmentComponent implements OnInit{
 
   users: User[];
   draggedTicket: Ticket;
-  name = 'Ticket\'s Development';
+  title = 'Development';
   protected ticketCollection: Ticket[];
   dragOperation: boolean = false;
   containers: Array<Container>;

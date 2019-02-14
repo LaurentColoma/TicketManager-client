@@ -22,7 +22,7 @@ export class PlanificationComponent implements OnInit {
 
   sprintCollection: Sprint[];
   draggedTicket: Ticket;
-  name = 'Planification';
+  title = 'Planification';
   protected ticketCollection: Ticket[];
   dateStart: string;
   dragOperation: boolean = false;
