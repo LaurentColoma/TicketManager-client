@@ -34,20 +34,8 @@ export class TicketService {
       .then(response => response.json());
   }
 
-  // getTicketsPlaned(query: string) {
-  //   const url = `${this.apiUrl}/?format=json`;
-  //   return this.http.get(url + '/?' + query)
-  //     .toPromise()
-  //     .then(response => response.json())
-  //     .catch(this.handleError);
-  // }
-
-  getTicket(id: number): Promise<Ticket> {
-    const url = `${this.apiUrl}/${id}`;
-    return this.http.get(url, this.jwt())
-      .toPromise()
-      .then(response => response.json())
-      .catch(this.handleError);
+  getTicketById(id: number): Observable<Ticket> {
+    return this._http.get<Ticket>(`${this.apiUrl}tickets/${id}/?format=json`);
   }
 
   createTicket(ticket: Ticket) {

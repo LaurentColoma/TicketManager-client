@@ -2,11 +2,11 @@
   <alert></alert>
   <div id="ticket-list" class="container">
     <div class="ticket-list jumbotron">
-      <div class="header">
-        <div class="title">
-          {{title}}
-        </div>
-      </div>
+        <div class="header">
+            <div class="title">
+              {{title}}
+            </div>
+          </div>
       <div #toggler class="sidenav-toggler">
         <button class="menu-button" type="button" (click)="toggle()">Menu</button>
       </div>
@@ -27,7 +27,8 @@
             <tbody class="table-body">
               <tr class="table-column-content" *ngFor="let ticket of ticketCollection"
                 [class.selected]="ticket === selectedTicket"
-                (click)="onSelect(ticket)">
+                (click)="onSelect(ticket)"
+                routerLink="/details/{{ticket.id}}">
                 <td><p>{{ ticket.label }}</p></td>
                 <td><p>{{ ticket.application }} {{ ticket.version_affected_set }}</p></td>
                 <td><p>{{ ticket.module_set }}</p></td>

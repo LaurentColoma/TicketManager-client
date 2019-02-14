@@ -1,4 +1,8 @@
 .mat-home {
-    background-color: brown;
-    color: #fff;
+    background-color: white;
+    color: #00447B;
+}
+
+.container-fluid {
+    padding: 2%;
 }

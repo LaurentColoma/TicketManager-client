@@ -26,6 +26,9 @@ export class DevelopmentComponent implements OnInit{
   dragOperation: boolean = false;
   containers: Array<Container>;
   dateStart: string;
+  in_progress: Array<Ticket> = [];
+  ready: Array<Ticket> = [];
+  dropped: Array<Ticket> = [];
 
   constructor (
     private ticketService: TicketService,
@@ -35,12 +38,22 @@ export class DevelopmentComponent implements OnInit{
     this.dateStart = dateNow.transform(new Date(), 'yyyy-MM-dd');
     this.ticketService.getAllTicket().subscribe(tickets => {
       this.ticketCollection = tickets;
+      for (var i = 0; this.ticketCollection[i]; i++) {
+        let customObj = new Ticket();
+        if (this.ticketCollection[i].status === 'in_progress') {
+          customObj = this.ticketCollection[i];
+          this.in_progress.push(customObj);
+        } else if (this.ticketCollection[i].status === 'ready') {
+          customObj = this.ticketCollection[i];
+          this.ready.push(customObj);
+        } else if (this.ticketCollection[i].status === 'dropped')
+          this.dropped.push(customObj);
+      }
       this.containers = [
-        new Container(1, 'planed', this.ticketCollection),
-        new Container(2, 'in_progress', this.ticketCollection),
-        new Container(3, 'dropped', this.ticketCollection)
+        new Container(1, 'in_progress', this.in_progress),
+        new Container(2, 'ready', this.ready),
+        new Container(3, 'dropped', this.dropped)
       ];
-      console.log(this.containers[0])
     });
   }
 

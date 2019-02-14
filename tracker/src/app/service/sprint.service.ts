@@ -5,11 +5,15 @@ import * as Global from '../global';
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/map';
 
+import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { Observable } from 'rxjs';
+import { Sprint } from '../data/sprint';
+
 @Injectable()
 export class SprintService {
   private apiUrl: string;
 
-  constructor(private http: Http) {
+  constructor(private http: Http, private _http: HttpClient) {
     if (!Global.PROD) {
       this.apiUrl = 'http://0.0.0.0:8000/';
     } else {
@@ -18,10 +22,14 @@ export class SprintService {
   }
 
   getSprints() {
-    return this.http.get(`${this.apiUrl}/?format=json`, this.jwt())
+    return this.http.get(`${this.apiUrl}sprint/`, this.jwt())
       .toPromise()
       .then(response => response.json())
       .catch(this.handleError);
+  }
+  
+  getAllSprint() : Observable<Array<Sprint>> {
+    return this._http.get<Array<Sprint>>(`${this.apiUrl}sprint/?format=json`)
   }
 
   private handleError(error: any) {

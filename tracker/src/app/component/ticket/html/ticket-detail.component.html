@@ -33,13 +33,11 @@
                     <table class="table">
                         <thead class="table-header">
                             <tr class="table-column-title">
-                                <td>Rapporteur</td>
                                 <td>Responsible</td>
                             </tr>
                         </thead>
                         <tbody class="table-body"> 
                             <tr class="table-column-content">
-                                <td>lorem ipsum</td>
                                 <td>{{ ticket.accountable }}</td>
                             </tr>
                         </tbody>
@@ -87,60 +85,7 @@
                             </tbody>
                         </table>
                     </div>
-                </div><!--
-                <hr />
-                <div class="phases row">
-                    <div class="col-sm-12">
-                        <h3>Phases</h3>
-                        <br />
-                        <p>Phases here...</p>
-                    </div>
                 </div>
-                <hr />
-                <div class="information row">
-                    <div class="col-sm-12">
-                        <h3>Additionnal Information</h3>
-                        <br />
-                        <p>add informations here...</p>
-                    </div>
-                </div>
-                <hr />
-                <div class="link row">
-                    <div class="col-sm-12">
-                        <h3>Bind to (past ticket/origin ticket)</h3>
-                        <br />
-                        <p>{{ ticket.original }}</p>
-                    </div>
-                </div>
-                <hr />
-                <div class="pieces row">
-                    <div class="col-sm-12">
-                        <h3>Attached Documents</h3>
-                        <br />
-                        <p>attached docs here...</p>
-                    </div>
-                </div>
-            </div>
-            <div class="thirdly-data jumbotron">
-                <div class="chatj jumbotron">
-                    <form name="form" (ngSubmit)="f.form.valid && createComment()" #f="ngForm" novalidate>
-                        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !content.valid }">
-                            <input class="form-control form-control-lg"  type="text" name="content"
-                                   [(ngModel)]="model.content" #content="ngModel" required />
-                            <div *ngIf="f.submitted && !content.valid" class="help-block">You must write something</div>
-                        </div>
-                        <div class="form-group">
-                            <button (click)="refresh()" class="btn btn-lg">Create</button>
-                        </div>
-                    </form>
-                    <h3>Answer</h3>
-                    <div *ngFor="let comment of comments">
-                        <p *ngIf="comment.ticket === ticket.url">
-                            {{ comment.content }}
-                        </p>
-                    </div>
-                </div>
-            </div>-->
         </div>
 
     </div>

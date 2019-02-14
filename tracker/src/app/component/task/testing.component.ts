@@ -21,6 +21,9 @@ export class TestingComponent {
   protected ticketCollection: Ticket[];
   dragOperation: boolean = false;
   containers: Array<Container>;
+  ready: Array<Ticket> = [];
+  tested: Array<Ticket> = [];
+  dropped: Array<Ticket> = [];
 
 
   constructor (
@@ -28,12 +31,22 @@ export class TestingComponent {
     private alertService: AlertService,) {
     this.ticketService.getAllTicket().subscribe(tickets => {
       this.ticketCollection = tickets;
+      for (var i = 0; this.ticketCollection[i]; i++) {
+        let customObj = new Ticket();
+        if (this.ticketCollection[i].status === 'ready') {
+          customObj = this.ticketCollection[i];
+          this.ready.push(customObj);
+        } else if (this.ticketCollection[i].status === 'tested') {
+          customObj = this.ticketCollection[i];
+          this.tested.push(customObj);
+        } else if (this.ticketCollection[i].status === 'dropped')
+          this.dropped.push(customObj);
+      }
       this.containers = [
-        new Container(1, 'planed', this.ticketCollection),
-        new Container(2, 'in_progress', this.ticketCollection),
-        new Container(3, 'dropped', this.ticketCollection)
+        new Container(1, 'ready', this.ready),
+        new Container(2, 'tested', this.tested),
+        new Container(3, 'dropped', this.dropped)
       ];
-      console.log(this.containers[0])
     });
   }
 

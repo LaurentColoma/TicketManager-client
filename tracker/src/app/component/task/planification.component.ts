@@ -8,6 +8,8 @@ import { TicketService } from '../../service/ticket.service';
 import { AlertService } from '../../service/alert.service';
 import { SprintService } from '../../service/sprint.service';
 
+import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
+
 import 'rxjs/add/operator/map';
 
 @Component({
@@ -18,13 +20,16 @@ import 'rxjs/add/operator/map';
 
 export class PlanificationComponent implements OnInit {
 
-  sprints: Sprint[];
+  sprintCollection: Sprint[];
   draggedTicket: Ticket;
-  name = 'Ticket\'s Planification';
+  name = 'Planification';
   protected ticketCollection: Ticket[];
   dateStart: string;
   dragOperation: boolean = false;
   containers: Array<Container>;
+  planed: Array<Ticket> = [];
+  in_progress: Array<Ticket> = [];
+  dropped: Array<Ticket> = [];
 
   constructor (
     private ticketService: TicketService,
@@ -34,26 +39,41 @@ export class PlanificationComponent implements OnInit {
     this.dateStart = dateNow.transform(new Date(), 'yyyy-MM-dd');
     this.ticketService.getAllTicket().subscribe(tickets => {
       this.ticketCollection = tickets;
+      for (var i = 0; this.ticketCollection[i]; i++) {
+        let customObj = new Ticket();
+        if (this.ticketCollection[i].status === 'planed') {
+          customObj = this.ticketCollection[i];
+          this.planed.push(customObj);
+        } else if (this.ticketCollection[i].status === 'in_progress') {
+          customObj = this.ticketCollection[i];
+          this.in_progress.push(customObj);
+        } else if (this.ticketCollection[i].status === 'dropped')
+          this.dropped.push(customObj);
+      }
       this.containers = [
-        new Container(1, 'planed', this.ticketCollection),
-        new Container(2, 'in_progress', this.ticketCollection),
-        new Container(3, 'dropped', this.ticketCollection)
+        new Container(1, 'planed', this.planed),
+        new Container(2, 'in_progress', this.in_progress),
+        new Container(3, 'dropped', this.dropped)
       ];
-      console.log(this.containers[0])
     });
+    this.sprintService.getAllSprint().subscribe(sprints => {
+      this.sprintCollection = sprints;
+    })
   }
 
   ngOnInit() {
-    this.getSprints();
   }
 
   onDrag(ticket: Ticket): void {
     this.draggedTicket = ticket;
   }
 
-  getSprints(): void {
-    this.sprintService.getSprints()
-      .then(sprints => this.sprints = sprints);
+  drop(event: CdkDragDrop<string[]>) {
+    if (event.previousContainer === event.container) {
+      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+    } else {
+      transferArrayItem(event.previousContainer.data, event.container.data, event.previousIndex, event.currentIndex);
+    }
   }
 
   updateSprint(ticket, sprint: Sprint) {
@@ -83,4 +103,5 @@ export class PlanificationComponent implements OnInit {
 
 class Container {
   constructor(public id: number, public name: string, public tickets: Ticket[]) {}
+
 }

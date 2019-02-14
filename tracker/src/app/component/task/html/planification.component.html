@@ -1,34 +1,23 @@
-<alert></alert>
-<home></home>
-<div class="row">
-    <div class="col-sm-3">
+<div class="main-container">
+    <alert></alert>
+    <home></home>
+    <div id="planification-list" class="container">
+        <div class="header">
+            <div class="title">
+              {{title}}
+            </div>
+        </div>
         <div dnd-sortable-container [sortableData]="containers" [dropZones]="['container-dropZone']">
-            <div class="col-sm3"
-                 *ngFor="let container of containers; let i = index"
-                 dnd-sortable [sortableIndex]="i" [dragEnabled]="dragOperation">
-                <div class="panel panel-warning"
-                     dnd-sortable-container [sortableData]="container.tickets" [dropZones]="['ticket-dropZone']">
-                    <div class="panel-heading">
-                        {{ container.id }} - {{ container.name }}
+            <div class="planification-list jumbotron" *ngFor="let container of containers; let i = index" dnd-sortable [sortableIndex]="i" [dragEnabled]="dragOperation">
+                <div class="panel panel-warning" dnd-sortable-container [sortableData]="container.tickets" [dropZones]="['ticket-dropZone']">
+                    <h3>{{ container.id }} - {{ container.name }}</h3>
+                    <div class="list-group-item" *ngFor="let ticket of container.tickets; let j = index"
+                        [sortableIndex]="j" [dragData]="ticket" dnd-sortable [dragEnabled]="!dragOperation" (drag)="onDrag(ticket)"
+                            (drop)="updateStatus(this.draggedTicket, container.name); updateSprint(this.draggedTicket, 'TBD')">
+                            {{ ticket.id }} - {{ ticket.label }}
                     </div>
-                    <div class="panel-body">
-                        <ul class="list-group" >
-                            <li class="list-group-item" *ngFor="let ticket of container.tickets; let j = index"
-                            [sortableIndex]="j" [dragData]="ticket" dnd-sortable [dragEnabled]="!dragOperation" (drag)="onDrag(ticket)"
-                                (drop)="updateStatus(this.draggedTicket, container.name); updateSprint(this.draggedTicket, 'TDB')">
-                                {{ ticket.id }} - {{ ticket.label }}
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
             </div>
         </div>
     </div>
 </div>
-<!--
-<div class="container-fluid">
-    <footer>
-    </footer>
-</div>
--->
+

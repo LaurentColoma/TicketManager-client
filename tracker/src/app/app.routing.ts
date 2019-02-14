@@ -33,7 +33,7 @@ const appRoutes: Routes = [
         canActivate: [AuthGuard],
       },
       {
-        path: 'details',
+        path: 'details/:id',
         component: TicketDetailComponent,
         canActivate: [AuthGuard],
       },

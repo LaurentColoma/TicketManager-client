@@ -14,6 +14,7 @@ import {DataTransferService} from "../../service/dataTransfer.service";
 export class TicketComponent {
 
   ticketCollection: Ticket[];
+  selectedTicket: Ticket;
   responsible: any;
   error: any;
   toggler: boolean = false;
@@ -29,8 +30,9 @@ export class TicketComponent {
   }
 
   onSelect(ticket: Ticket): void {
-    this.dataTransfer._setDataHandler(ticket);
-    this.router.navigate(['/details'])
+    /*this.dataTransfer._setDataHandler(ticket);
+    this.router.navigate(['/details'])*/
+    this.selectedTicket = ticket;
   }
 
   toggle() {

@@ -1,10 +1,14 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit, Input} from '@angular/core';
 import { DatePipe } from '@angular/common';
+
+import {ActivatedRoute} from '@angular/router';
+import {Location} from '@angular/common';
 
 import { Ticket} from '../../data/tickets';
 import { Comment } from '../../data/comment';
 
-import { CommentService } from '../../service/comment.service';
+
+import {TicketService} from '../../service/ticket.service';
 import { AlertService } from '../../service/alert.service';
 import {DataTransferService} from "../../service/dataTransfer.service";
 
@@ -16,8 +20,10 @@ import 'rxjs/add/operator/switchMap';
   styleUrls: ['./css/ticket-detail.component.css']
 })
 
+
+
 export class TicketDetailComponent implements OnInit {
-  ticket: Ticket;
+  @Input() ticket: Ticket;
   comments: Comment[];
   error: any;
   model: any = {};
@@ -25,36 +31,27 @@ export class TicketDetailComponent implements OnInit {
   dateCreation: string;
 
   constructor(
-    private commentService: CommentService,
     private alertService: AlertService,
-    private dataTransfer: DataTransferService) {
+    private dataTransfer: DataTransferService,
+    private ticketService: TicketService,
+    private route: ActivatedRoute,
+    private location: Location) {
     const dateNow = new DatePipe('en-EN');
     this.dateCreation = dateNow.transform(new Date(), 'yyyy/mm/dd hh:mm:ss');
     this.ticket = this.dataTransfer._getDataHandler();
   }
 
   ngOnInit() {
+    this.getTicket();
+  }
+
+  getTicket(): void {
+    const id = +this.route.snapshot.paramMap.get('id');
+    this.ticketService.getTicketById(id)
+      .subscribe(ticket => this.ticket = ticket);
   }
 
   refresh(): void {
     location.reload();
   }
-
-  /*getComments(): void {
-    this.commentService
-        .getComment()
-        .then(comments => this.comments = comments);
-  }
-
-  createComment() {
-    this.model['ticket'] = this.ticket.url;
-    this.model['date'] = this.dateCreation;
-    this.commentService.createComment(this.model)
-      .subscribe(data => {
-          this.alertService.success('Comment added', true);
-        },
-        error => {
-          this.alertService.error(error);
-        });
-  }*/
 }

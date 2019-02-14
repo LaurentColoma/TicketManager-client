@@ -6,6 +6,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DndModule } from 'ng2-dnd';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { MaterialModule } from "./material.module";
+import {DragDropModule} from "@angular/cdk/drag-drop";
 
 // Component
 import { AppComponent } from './app.component';
@@ -82,6 +83,7 @@ import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
     DndModule.forRoot(),
     BrowserAnimationsModule,
     MaterialModule,
+    DragDropModule,
     JwtModule.forRoot({
       config: {
         tokenGetter: function tokenGetter() {
