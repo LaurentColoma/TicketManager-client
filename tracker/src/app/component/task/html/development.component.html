@@ -2,12 +2,7 @@
     <alert></alert>
     <home></home>
     <div id="development-list" class="container">
-        <div class="header">
-            <div class="title">
-              {{title}}
-            </div>
-        </div>
-        <div dnd-sortable-container [sortableData]="containers" [dropZones]="['container-dropZone']">
+        <div class="row" dnd-sortable-container [sortableData]="containers" [dropZones]="['container-dropZone']">
             <div class="development-list jumbotron" *ngFor="let container of containers; let i = index" dnd-sortable [sortableIndex]="i" [dragEnabled]="dragOperation">
                 <div class="panel panel-warning" dnd-sortable-container [sortableData]="container.tickets" [dropZones]="['ticket-dropZone']">
                     <h3>{{ container.id }} - {{ container.name }}</h3>

@@ -1,18 +1,25 @@
 .container {
-  width: 25%;
+  width: 100%;
 }
 
 .jumbotron {
   background-color:  #ffffff;
 }
 
+.row {
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .planification-list {
   border: solid 1px #ccc;
   min-height: 60px;
-  background: white;
+  background-color: white;
   border-radius: 4px;
   overflow: hidden;
   display: block;
+  width: 25%;
 }
 
 .ticket-box {

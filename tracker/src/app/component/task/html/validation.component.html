@@ -2,21 +2,36 @@
     <alert></alert>
     <home></home>
     <div id="validation-list" class="container">
-        <div class="header">
-            <div class="title">
-              {{title}}
-            </div>
-        </div>
-        <div dnd-sortable-container [sortableData]="containers" [dropZones]="['container-dropZone']">
+        <div class="row" dnd-sortable-container [sortableData]="containers" [dropZones]="['container-dropZone']">
             <div class="validation-list jumbotron" *ngFor="let container of containers; let i = index" dnd-sortable [sortableIndex]="i" [dragEnabled]="dragOperation">
                 <div class="panel panel-warning" dnd-sortable-container [sortableData]="container.tickets" [dropZones]="['ticket-dropZone']">
                     <h3>{{ container.id }} - {{ container.name }}</h3>
-                    <div class="list-group-item" *ngFor="let ticket of container.tickets; let j = index"
-                        [sortableIndex]="j" [dragData]="ticket" dnd-sortable [dragEnabled]="!dragOperation" (drag)="onDrag(ticket)"
-                            (drop)="updateStatus(this.draggedTicket, container.name); updateSprint(this.draggedTicket, 'TBD')">
+                    <div class="list-group-item"
+                        (click)="_clickedTicketHandler(ticket)"
+                        *ngFor="let ticket of container.tickets; let j = index"
+                        [sortableIndex]="j" 
+                        [dragData]="ticket" 
+                        dnd-sortable 
+                        [dragEnabled]="!dragOperation" 
+                        (drag)="onDrag(ticket)"
+                        (drop)="updateStatus(this.draggedTicket, container.name); updateSprint(this.draggedTicket, 'TBD')">
                             {{ ticket.id }} - {{ ticket.label }}
                     </div>
             </div>
+        </div>
+    </div>
+    <div *ngIf="this.clickOnTicket === true" id="validation-details" class="container">
+        <div class="validation-details">
+            <div class="label">{{this.selectedTicket.label}}</div>
+            <div class="application">Application: {{this.selectedTicket.application}}</div>
+            <div class="impact">Impact: {{this.selectedTicket.impact}}</div>
+            <div class="priority">Priority: {{this.selectedTicket.priority}}</div>
+            <div class="time_sensitiveness">Time Sensitiveness: {{this.selectedTicket.time_sensitiveness}}</div>
+            <div class="responsible">Responsible: {{this.selectedTicket.responsible}}</div>
+            <div class="accountable">Accountable: {{this.selectedTicket.accountable}}</div>
+            <div class="consulted_set">Consultor: {{this.selectedTicket.consulted_set}}</div>
+            <div class="informed_set">Informed: {{this.selectedTicket.informed_set}}</div>
+            <div class="description">Description: {{this.selectedTicket.description}}</div>
         </div>
     </div>
 </div>

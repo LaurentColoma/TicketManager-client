@@ -1,9 +1,15 @@
 .container {
-  width: 25%;
+  width: 100%;
 }
 
 .jumbotron {
   background-color:  #ffffff;
+}
+
+.row {
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .testing-list {
@@ -13,6 +19,7 @@
   border-radius: 4px;
   overflow: hidden;
   display: block;
+  width: 25%;
 }
 
 .ticket-box {

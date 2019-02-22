@@ -17,6 +17,8 @@ import 'rxjs/add/operator/map';
 export class ValidationComponent implements OnInit{
 
   draggedTicket: Ticket;
+  selectedTicket: Ticket;
+  clickOnTicket: boolean = false;
   title = 'Validation';
   protected ticketCollection: Ticket[];
   dragOperation: boolean = false;
@@ -57,6 +59,11 @@ export class ValidationComponent implements OnInit{
 
   onDrag(ticket: Ticket): void {
     this.draggedTicket = ticket;
+  }
+
+  _clickedTicketHandler(ticket: Ticket): void {
+    this.clickOnTicket = true;
+    this.selectedTicket = ticket;
   }
 
   updateStatus(ticket: Ticket, status: string) {
